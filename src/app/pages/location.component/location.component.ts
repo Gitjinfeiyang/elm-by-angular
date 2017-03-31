@@ -22,11 +22,13 @@ export class LocationComponent implements OnInit{
   city:City;
   keyword:String;
   searchResult:any;
+  searchHistory=[];
 
   ngOnInit(){
     this.route.params
       .switchMap((params: Params) => this.cityService.getCity(+params['id']))
       .subscribe(city => this.city = city);
+    this.getSearchHistory();
   }
 
   search(){
@@ -36,5 +38,21 @@ export class LocationComponent implements OnInit{
 
   toHomePage(location:any){
     this.router.navigate(['/home',location.geohash]);
+  }
+
+  setSearchHistory(result){
+    this.cityService.setLocationSearchHistory(result);
+    console.log('setHistory')
+  }
+
+  getSearchHistory(){
+    if(this.cityService.getLocationSearchHistory()){
+      this.cityService.getLocationSearchHistory().forEach((e) => {
+        this.searchHistory.push(JSON.parse(e));
+      });
+    }else{
+      this.searchHistory=[{name:'无记录'}]
+    }
+    console.log(this.searchHistory);
   }
 }

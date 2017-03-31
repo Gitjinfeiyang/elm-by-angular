@@ -53,6 +53,15 @@ export class CityService {
   }
 
   setLocationSearchHistory(result:any){
-    if(window.localStorage(''))
+    let locationHistory=localStorage.getItem('locationHistory');
+    if(locationHistory){
+      localStorage.setItem('locationHistory',locationHistory.concat('****',JSON.stringify(result)));
+    }else{
+      localStorage.setItem('locationHistory',JSON.stringify(result));
+    }
+  }
+
+  getLocationSearchHistory(){
+    return localStorage.getItem('locationHistory')?localStorage.getItem('locationHistory').split('****'):undefined;
   }
 }
