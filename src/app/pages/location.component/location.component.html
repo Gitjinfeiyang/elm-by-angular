@@ -1,0 +1,19 @@
+<div class="location-search">
+  <head-nav>
+    <div class="nav-left">< 返回</div>
+    <div class="nav-middle" *ngIf="city">{{city.name}}</div>
+    <div class="nav-right">切换城市</div>
+  </head-nav>
+  <div class="search-bar">
+    <input type="text" class="search-text" [(ngModel)]="keyword" placeholder="请输入学校、商务楼、地址"/>
+    <input type="button" value="搜索" class="search-button" (click)="search()"/>
+  </div>
+  <div class="search-result" *ngIf="searchResult">
+    <ul>
+      <li *ngFor="let result of searchResult" class="search-item" (click)="toHomePage(result)">
+        <h4>{{result.name}}</h4>
+        <p>{{result.address}}</p>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="list-wrapper">
+  <ul>
+    <li *ngFor="let seller of sellers" class="seller-box">
+      <div class="seller-img-wrapper">
+        <img [src]="getImgPath(seller.image_path)">
+      </div>
+      <div class="seller-main">
+        <div class="seller-title">
+          <h5>{{seller.name}}</h5>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

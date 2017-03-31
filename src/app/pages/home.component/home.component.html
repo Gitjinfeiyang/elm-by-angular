@@ -1,0 +1,19 @@
+<div class="header-top">
+  <marquee class="location-wrapper" *ngIf="location">{{location.address}} ></marquee>
+  <div class="shopping-search">
+    <input type="text" placeholder="搜索商家、商品" />
+  </div>
+</div>
+<div class="category-wrapper" *ngIf="category">
+  <ul>
+    <li class="category-box" *ngFor="let c of category">
+      <a href="c.link">
+        <img class="category-icon" [src]="imgUrl+c.image_url" />
+        <h5 class="category-title">{{c.title}}</h5>
+      </a>
+    </li>
+  </ul>
+</div>
+<div class="recommend-sellers" *ngIf="recommendSellers">
+  <shopping-list [sellers]="recommendSellers"></shopping-list>
+</div>

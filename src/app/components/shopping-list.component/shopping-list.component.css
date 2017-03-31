@@ -1,0 +1,4 @@
+.seller-box{display: flex; padding:10px; border-bottom: 1px solid #e4e4e4;}
+.seller-img-wrapper{flex:0 80px; height:80px; }
+.seller-img-wrapper img{width:100%;}
+.seller-main{flex:1; padding-left: 10px;}

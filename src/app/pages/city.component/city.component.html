@@ -1,0 +1,28 @@
+<div class="city-wrapper">
+  <div class="head-wrapper">
+    <head-nav>
+      <div class="nav-left">ele.me</div>
+      <div class="nav-middle"></div>
+      <div class="nav-right"><a>登录</a>|<a>注册</a></div>
+    </head-nav>
+  </div>
+  <div class="cities">
+    <div class="location" *ngIf="location">
+      <h3 class="title">当前定位城市:</h3>
+      <p>{{location.name}}</p>
+    </div>
+    <div class="hot-cities" *ngIf="hotCities">
+      <h3 class="title">热门城市:</h3>
+      <ul class="city-list">
+        <li class="city-box" *ngFor="let city of hotCities" [routerLink]="['/location/',city.id]">{{city.name}}</li>
+      </ul>
+    </div>
+    <div class="all-cities" *ngIf="allCities">
+      <h3 class="title">所有城市:</h3>
+      <ul class="city-list" *ngFor="let group of allCities">
+        <h4 class="title">{{group.index}}</h4>
+        <li class="city-box" *ngFor="let city of group.cities" [routerLink]="['/location/',city.id]" >{{city.name}}</li>
+      </ul>
+    </div>
+  </div>
+</div>

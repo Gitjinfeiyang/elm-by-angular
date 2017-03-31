@@ -1,0 +1,8 @@
+{
+  "/api": {
+    "target": "https://mainsite-restapi.ele.me",
+    "secure": false,
+    "changeOrigin":true,
+    "pathRewrite":{"/api":""}
+  }
+}

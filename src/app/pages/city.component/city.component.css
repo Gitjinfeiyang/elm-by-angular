@@ -1,0 +1,6 @@
+
+.title{font-size: 12px; color:#666; font-weight: 100; padding:0 10px;}
+.city-box{display: inline-block; width:25%; line-height:30px; border-top:1px solid #e4e4e4; border-right: 1px solid #e4e4e4;
+  text-align:center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; vertical-align: bottom;}
+.hot-cities .city-box{color:#3190e8;}
+.city-list{line-height: 30px; border-bottom: 1px solid #e4e4e4;}
