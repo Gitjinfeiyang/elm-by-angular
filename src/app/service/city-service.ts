@@ -64,4 +64,8 @@ export class CityService {
   getLocationSearchHistory(){
     return localStorage.getItem('locationHistory')?localStorage.getItem('locationHistory').split('****'):undefined;
   }
+
+  clearLocationSearchHistory(){
+    localStorage.removeItem('locationHistory');
+  }
 }

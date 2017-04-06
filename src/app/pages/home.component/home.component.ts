@@ -22,14 +22,14 @@ export class HomeComponent implements OnInit {
   imgUrl='https://fuss10.elemecdn.com';
 
   ngOnInit() {
-    this.route.params
-      .switchMap((params: Params) => this.cityService.getLocationDetail(params['geohash']))
-      .subscribe(location => {
-        this.shoppingService.location = this.location = location;
-        console.log(this.location);
-        this.goShopping();
-      });
-
+    // this.route.params
+    //   .switchMap((params: Params) => this.cityService.getLocationDetail(params['geohash']))
+    //   .subscribe(location => {
+    //     this.shoppingService.location = this.location = location;
+    //     this.goShopping();
+    //   });
+    this.location=this.shoppingService.location;
+    this.goShopping();
   }
 
   goShopping(){

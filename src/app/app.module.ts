@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import {RouterModule} from "@angular/router";
 import {FormsModule} from "@angular/forms";
-import {CommonModule} from "@angular/common";
 import {HttpModule} from "@angular/http";
 
 import { AppComponent }  from './app.component';
@@ -12,11 +11,8 @@ import {HeadComponent} from "./components/head.component/head.component";
 import {LocationComponent} from "./pages/location.component/location.component";
 
 import {CityService} from "./service/city-service";
-// import {HomeComponent} from "./pages/home.component/home.component";
 import {ShoppingService} from "./service/shopping-service";
-import {NavComponent} from "./components/nav.component/nav.component";
-import {ShoppingListComponent} from "./components/shopping-list.component/shopping-list.component";
-import {HomeModule} from "./pages/home.component/home.module";
+import { LoginComponent } from './pages/login.component/login.component';
 
 @NgModule({
   imports:      [
@@ -40,17 +36,11 @@ import {HomeModule} from "./pages/home.component/home.module";
         {
           path:'home/:geohash',
           loadChildren:'./pages/home.component/home.module#HomeModule'
+        },
+        {
+          path:'login',
+          component:LoginComponent
         }
-        // {
-        //   path:'main',
-        //   component:MainComponent,
-        //   children:[
-        //     {
-        //       path:'home/:geohash',
-        //       component:HomeComponent
-        //     }
-        //   ]
-        // }
       ]),
 
   ],
@@ -59,9 +49,7 @@ import {HomeModule} from "./pages/home.component/home.module";
     HeadComponent,
     CityComponent,
     LocationComponent,
-    // HomeComponent,
-    // NavComponent,
-    // ShoppingListComponent,
+    LoginComponent,
   ],
   providers:[
     CityService,

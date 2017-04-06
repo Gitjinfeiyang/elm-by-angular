@@ -1,0 +1,17 @@
+a{color:#3190e8; font-weight: 300;}
+
+
+.login-by-phoneNum,.login-by-username,.line-submit-button,.agreement-wrapper,.find-password-wrapper{padding:10px; line-height: 40px;}
+.login-by-phoneNum input, .login-by-username input, .submit-button{line-height: 40px; height:40px; border:none; border-radius: 2px;
+  background:#e4e4e4; outline: none; transition:all 0.5s;}
+.login-by-phoneNum input, .login-by-username input{text-indent: 10px;}
+.verify-code-input,.verify-code-send-input{width:49%;}
+.verify-code-send-input{background:#4cd964 !important; color:#fff;}
+input:focus{box-shadow: 0 0 4px 4px rgba(49, 144, 232, 0.5);}
+.input-line{padding-top: 10px;}
+.phoneNum-input,.username-input,.password-input,.submit-button{width:100%;}
+.submit-button{background:#3190e8; color:#fff; font-weight: 500;}
+.agreement-wrapper,.find-password-wrapper{font-size: 12px; line-height: 16px; color:#999;}
+.find-password-wrapper{text-align: right;}
+
+.disabled[type='button']{background:#ccc !important;}

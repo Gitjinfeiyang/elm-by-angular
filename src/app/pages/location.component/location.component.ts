@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Params, Router} from '@angular/router';
-import { Location }               from '@angular/common';
+import { Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 import {City} from "../../Public/City";
 import {CityService} from "../../service/city-service";
@@ -54,5 +54,10 @@ export class LocationComponent implements OnInit{
       this.searchHistory=[{name:'无记录'}]
     }
     console.log(this.searchHistory);
+  }
+
+  clearSearchHistory(){
+    this.cityService.clearLocationSearchHistory();
+    this.searchHistory=[];
   }
 }

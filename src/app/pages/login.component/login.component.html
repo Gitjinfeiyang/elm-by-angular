@@ -1,0 +1,32 @@
+<head-nav>
+  <div class="nav-left">< 返回</div>
+  <div class="nav-right">密码登录</div>
+</head-nav>
+<form class="login-by-phoneNum" #phoneNumLogin="ngForm">
+  <div class="line-phoneNum input-line">
+    <input type="number" name="phoneNum" class="phoneNum-input" placeholder="请输入手机号" [(ngModel)]="phoneNumLogin.phoneNum" required/>
+  </div>
+  <div class="line-verify-code input-line">
+    <input type="number" name="verifyCode" class="verify-code-input" placeholder="请输入短信验证码" [(ngModel)]="phoneNumLogin.verifyCode" required/>
+    <input type="button" name="submitBtn" value="发送验证码" class="verify-code-send-input" [class.disabled]="phoneNumLogin.invalid" (click)="sendMessage(phoneNumLogin.valid);" [disabled]="phoneNumLogin.invalid"/>
+  </div>
+  <div class="agreement-wrapper">
+    <p>
+      温馨提示：未注册饿了么帐号的手机号，登录时将自动注册，且代表您已同意<a href="#" target="_blank">用户服务协议</a>
+    </p>
+  </div>
+</form>
+<form class="login-by-username">
+  <div class="line-username input-line">
+    <input type="text" class="username-input" placeholder="请输入用户名" required/>
+  </div>
+  <div class="line-password input-line">
+    <input type="password" class="password-input" placeholder="请输入密码" required/>
+  </div>
+  <div class="find-password-wrapper">
+    <p><a href="#" target="_blank">忘记密码</a></p>
+  </div>
+</form>
+<div class="line-submit-button input-line ">
+  <input type="button" class="submit-button" value="登录" />
+</div>

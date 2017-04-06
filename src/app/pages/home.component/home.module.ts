@@ -23,18 +23,28 @@ import {MeComponent} from "./me.component/me.component";
     RouterModule.forChild([
       {
         path:'',
+        redirectTo:'main',
+        pathMatch:'full'
+      },
+      {
+        path:'main',
         component:MainComponent,
         children:[
+          // {
+          //   path:'',
+          //   redirectTo:'home',
+          //   pathMatch:'full'
+          // },
           {
-            path:'',
-            component:HomeComponent,
+            path:'home',
+            component:HomeComponent
           },
           {
             path:'me',
             component:MeComponent
           }
         ]
-      },
+      }
 
 
     ])
