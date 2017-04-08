@@ -37,6 +37,7 @@ export class LocationComponent implements OnInit{
   }
 
   toHomePage(location:any){
+    // localStorage.setItem('geohash',location.geohash);
     this.router.navigate(['/home',location.geohash]);
   }
 

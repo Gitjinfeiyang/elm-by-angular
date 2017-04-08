@@ -1,0 +1,18 @@
+.nav-middle{text-align: center;}
+
+.user-profile-wrapper{background:#3190e8; display: flex; color:#fff;}
+.avatar{flex:0 80px; height:80px; line-height: 80px; text-align: center;}
+.avatar .iconfont{font-size: 60px;}
+.avatar img{width:60px; height:60px; border-radius: 50%;}
+.user-profile{flex:1; padding:10px;}
+.toLogin{height:100%; line-height: 40px;}
+
+.user-property{display: flex; padding-top: 10px;}
+.user-property>div{flex: 1;}
+.user-property>div>p{line-height:30px; text-align: center; font-size: 12px; color:#333;}
+.user-property strong{font-size: 20px; font-weight: bold;}
+.balance strong{color:rgb(255, 153, 0);}
+.discount strong{color:rgb(255, 95, 62);}
+.credits strong{color:rgb(106, 194, 11);}
+
+.other-information .iconfont{padding-right: 20px;}

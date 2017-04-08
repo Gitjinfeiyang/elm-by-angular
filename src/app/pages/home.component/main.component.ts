@@ -23,7 +23,7 @@ export  class MainComponent implements OnInit{
       .switchMap((params: Params) => this.cityService.getLocationDetail(params['geohash']))
       .subscribe(location => {
         this.shoppingService.location = location;
-        this.router.navigate(['/home'])
+        this.router.navigate(['home'],{relativeTo:this.route});
       });
   }
 }

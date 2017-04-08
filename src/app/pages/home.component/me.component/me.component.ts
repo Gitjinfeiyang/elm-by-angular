@@ -4,14 +4,20 @@ import {UserService} from "../../../service/user-service";
 
 @Component({
   selector:'me-page',
-  templateUrl:'./me.component.html'
+  templateUrl:'./me.component.html',
+  styleUrls:['./me.component.css']
 })
 export class MeComponent implements OnInit{
   constructor(
     private userService:UserService
   ){}
+  isLogined=false;
+  userProfile:any;
+  userAvatar;
 
   ngOnInit(){
-    console.log(this.userService.isLogined());
+    if(this.userService.isLogined()){
+      this.userProfile=this.userService.getUserProfile();
+    }
   }
 }

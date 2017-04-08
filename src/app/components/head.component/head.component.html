@@ -1,5 +1,5 @@
 <div class="head">
-  <div class="head-left"><ng-content select=".nav-left"></ng-content></div>
+  <div class="head-left" (click)="goBack()"><ng-content select=".nav-left"></ng-content></div>
   <div class="head-middle"><ng-content select=".nav-middle"></ng-content></div>
   <div class="head-right"><ng-content select=".nav-right"></ng-content></div>
 </div>
