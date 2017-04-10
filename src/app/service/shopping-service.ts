@@ -18,8 +18,8 @@ export class ShoppingService {
       .catch(err => console.log(err));
   }
 
-  getRecommendSeller(){
-    return this.http.get(`/api/shopping/restaurants?latitude=${this.location.latitude}&longitude=${this.location.longitude}&
+  getRecommendSeller(location){
+    return this.http.get(`/api/shopping/restaurants?latitude=${location.latitude}&longitude=${location.longitude}&
         offset=0&limit=20&extras[]=activities&keyword=&restaurant_category_id=&restaurant_category_ids[]=&order_by=
         &delivery_mode[]=`)
       .toPromise()

@@ -1,0 +1,10 @@
+<div class="loading-wrapper">
+  <div class="loading-style-wrapper">
+    <div class="loading-style" *ngIf="!complete" [@fadeInUp]>
+      <span class="iconfont">&#xe6da;</span>
+    </div>
+    <div class="loading-complete-style" *ngIf="complete" [@fadeInUp]>
+      <span class="iconfont">&#xe6d8;</span>
+    </div>
+  </div>
+</div>

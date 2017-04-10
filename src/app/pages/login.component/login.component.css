@@ -7,7 +7,7 @@ a{color:#3190e8; font-weight: 300;}
 .login-by-phoneNum input, .login-by-username input{text-indent: 10px;}
 .verify-code-input,.verify-code-send-input{width:49%;}
 .verify-code-send-input{background:#4cd964 !important; color:#fff;}
-input:focus{box-shadow: 0 0 4px 4px rgba(49, 144, 232, 0.5);}
+input:focus{box-shadow: 0 0 4px 4px rgba(49, 144, 232, 0.3);}
 .input-line{padding-top: 10px;}
 .phoneNum-input,.username-input,.password-input,.submit-button{width:100%;}
 .submit-button{background:#3190e8; color:#fff; font-weight: 500;}
@@ -15,3 +15,12 @@ input:focus{box-shadow: 0 0 4px 4px rgba(49, 144, 232, 0.5);}
 .find-password-wrapper{text-align: right;}
 
 .disabled[type='button']{background:#ccc !important;}
+.resend[type='button']{background:#3190e8 !important;}
+
+.popup-title{}
+.popup-content{padding:20px 10px; border-bottom: 1px solid #e4e4e4;}
+.captcha-input,.captcha-img{width:49%; height:40px; line-height: 40px; border:none; border-radius: 2px;
+    background:#e4e4e4; outline: none; vertical-align: top;}
+.popup-buttons{font-size: 0;}
+.cancel-button,.confirm-button{width:50%; height:40px; line-height: 40px; border:none; background:#fff; font-size: 14px;}
+.confirm-button{background:#3190e8; color:#fff;}

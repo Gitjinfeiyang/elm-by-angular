@@ -1,16 +1,18 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, HostBinding} from "@angular/core";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {ShoppingService} from "../../service/shopping-service";
 import {CityService} from "../../service/city-service";
+import {routerAnimation} from "../../animations";
 @Component({
   selector:'main-page',
   template:`
 <router-outlet></router-outlet>
 <nav-footer></nav-footer>
 `,
-  styles:[]
+  styles:[],
 })
 export  class MainComponent implements OnInit{
+
   constructor(
     private route:ActivatedRoute,
     private router:Router,
@@ -23,7 +25,8 @@ export  class MainComponent implements OnInit{
       .switchMap((params: Params) => this.cityService.getLocationDetail(params['geohash']))
       .subscribe(location => {
         this.shoppingService.location = location;
-        this.router.navigate(['/home'])
+        sessionStorage.setItem('location',JSON.stringify(location));
+        this.router.navigate(['home'],{relativeTo:this.route});
       });
   }
 }

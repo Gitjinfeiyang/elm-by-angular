@@ -1,0 +1,15 @@
+.loading-wrapper{position:fixed; top:0; left:0; width:100vw; height:100vh;background:#fff;}
+.loading-style-wrapper{width:80px; height:80px; position:absolute; top:50%; left:50%; margin-left:-40px; margin-top:-40px;
+  font-size: 60px; line-height: 80px; text-align: center;}
+.loading-style-wrapper>div{width:100%; height:100%;}
+.loading-style-wrapper .iconfont{font-size: inherit;}
+.loading-style{animation: rotateInfinite 1s linear infinite;}
+
+@keyframes rotateInfinite {
+  0%{
+    transform: rotateZ(0deg);
+  }
+  100%{
+    transform: rotateZ(360deg);
+  }
+}

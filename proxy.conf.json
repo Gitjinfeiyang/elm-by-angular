@@ -4,5 +4,11 @@
     "secure": false,
     "changeOrigin":true,
     "pathRewrite":{"/api":""}
+  },
+  "/api2":{
+    "target":"https://web-ubt.ele.me",
+    "secure":false,
+    "changeOrigin":true,
+    "pathReWrite":{"/api":""}
   }
 }

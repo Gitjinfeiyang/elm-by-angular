@@ -1,14 +1,19 @@
 <head-nav>
-  <div class="nav-left">< 返回</div>
-  <div class="nav-right">密码登录</div>
+  <div class="nav-left"><span class="iconfont">&#xe6a8;</span><span>返回</span></div>
+  <div class="nav-right" (click)="loginByPhoneNum=!loginByPhoneNum;captcha=null;loginFail=false;">{{loginByPhoneNum?'密码登录':'手机号登录'}}</div>
 </head-nav>
-<form class="login-by-phoneNum" #phoneNumLogin="ngForm">
+<div class="notice" *ngIf="notice">{{notice}}</div>
+<form class="login-by-phoneNum" *ngIf="loginByPhoneNum" #phoneNumLogin="ngForm">
   <div class="line-phoneNum input-line">
-    <input type="number" name="phoneNum" class="phoneNum-input" placeholder="请输入手机号" [(ngModel)]="phoneNumLogin.phoneNum" required/>
+    <input type="number" name="phoneNum" class="phoneNum-input" placeholder="请输入手机号"
+           [(ngModel)]="phone" #phoneNum required/>
   </div>
   <div class="line-verify-code input-line">
-    <input type="number" name="verifyCode" class="verify-code-input" placeholder="请输入短信验证码" [(ngModel)]="phoneNumLogin.verifyCode" required/>
-    <input type="button" name="submitBtn" value="发送验证码" class="verify-code-send-input" [class.disabled]="phoneNumLogin.invalid" (click)="sendMessage(phoneNumLogin.valid);" [disabled]="phoneNumLogin.invalid"/>
+    <input type="number" name="verifyCode" class="verify-code-input" placeholder="请输入短信验证码"
+           [(ngModel)]="verifyCode" required/>
+    <input type="button" name="submitBtn" [value]="verifyBtnContent" class="verify-code-send-input"
+           [class.disabled]="(phoneNum.value.length!=11)||(hasSend&&!resend)" [class.resend]="resend"
+           (click)="sendMessage('',phoneNum.value)" [disabled]="(phoneNum.value.length!=11)||(hasSend&&!resend)"/>
   </div>
   <div class="agreement-wrapper">
     <p>
@@ -16,17 +21,33 @@
     </p>
   </div>
 </form>
-<form class="login-by-username">
+<form class="login-by-username" *ngIf="!loginByPhoneNum" #usernameLogin="ngForm">
   <div class="line-username input-line">
-    <input type="text" class="username-input" placeholder="请输入用户名" required/>
+    <input type="text" class="username-input" name="username" placeholder="请输入用户名" [(ngModel)]="username" required/>
   </div>
   <div class="line-password input-line">
-    <input type="password" class="password-input" placeholder="请输入密码" required/>
+    <input type="password" class="password-input" name="password" placeholder="请输入密码" [(ngModel)]="password" required/>
+  </div>
+  <div class="line-captcha input-line" *ngIf="loginFail">
+    <input type="text" class="captcha-input" name="captchaCode" [(ngModel)]="captchaCode" placeholder="请输入图片验证码"/>
+    <img *ngIf="captcha" [src]="'http://mainsite-restapi.ele.me/v1/captchas/'+captcha" class="captcha-img" />
   </div>
   <div class="find-password-wrapper">
     <p><a href="#" target="_blank">忘记密码</a></p>
   </div>
 </form>
 <div class="line-submit-button input-line ">
-  <input type="button" class="submit-button" value="登录" />
+  <input type="button" class="submit-button" value="登录"
+         (click)="loginByPhoneNum?mobileLogin(verifyCode):passwordLogin()" />
 </div>
+<popup *ngIf="captcha&&loginByPhoneNum">
+  <div class="popup-title">请输入验证码</div>
+  <div class="popup-content">
+    <input type="text" [(ngModel)]="captchaCode" class="captcha-input"  placeholder="请输入图片验证码"/>
+    <img [src]="'http://mainsite-restapi.ele.me/v1/captchas/'+captcha" class="captcha-img" />
+  </div>
+  <div class="popup-buttons">
+    <input type="button" value="取消" class="cancel-button" />
+    <input type="button" value="确定" class="confirm-button" (click)="sendMessage(captchaCode,phone)" />
+  </div>
+</popup>
