@@ -1,15 +1,20 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, HostBinding} from "@angular/core";
 import {CityService} from "../../service/city-service";
 import {ShoppingService} from "../../service/shopping-service";
 import {Router, ActivatedRoute, Params} from "@angular/router";
+import {routerAnimation, fadeInOut} from "../../animations";
 
 
 @Component({
   selector: 'home-page',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  animations:[routerAnimation,fadeInOut]
 })
 export class HomeComponent implements OnInit {
+  @HostBinding('@routeAnimation') routeAnimation = true;
+  @HostBinding('style.display')   display = 'block';
+
   constructor(private cityService: CityService,
               private shoppingService: ShoppingService,
               private router: Router,
@@ -20,15 +25,14 @@ export class HomeComponent implements OnInit {
   category: any;
   recommendSellers: any;
   imgUrl='https://fuss10.elemecdn.com';
+  animationDone=false;
 
   ngOnInit() {
-    // this.route.params
-    //   .switchMap((params: Params) => this.cityService.getLocationDetail(params['geohash']))
-    //   .subscribe(location => {
-    //     this.shoppingService.location = this.location = location;
-    //     this.goShopping();
-    //   });
-    this.location=this.shoppingService.location;
+    if(!this.shoppingService.location){
+      this.location=JSON.parse(sessionStorage.getItem('location'));
+    }else{
+      this.location=this.shoppingService.location;
+    }
     this.goShopping();
   }
 
@@ -36,7 +40,7 @@ export class HomeComponent implements OnInit {
     this.shoppingService.getCategory(this.location.geohash)
       .then(category => this.category = category);
 
-    this.shoppingService.getRecommendSeller()
+    this.shoppingService.getRecommendSeller(this.location)
       .then(sellers => this.recommendSellers=sellers);
   }
 

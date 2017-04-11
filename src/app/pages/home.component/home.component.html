@@ -15,5 +15,8 @@
   </ul>
 </div>
 <div class="recommend-sellers" *ngIf="recommendSellers">
+  <h5>推荐商家</h5>
   <shopping-list [sellers]="recommendSellers"></shopping-list>
 </div>
+<loading *ngIf="!recommendSellers" [@fadeInOut] [complete]="recommendSellers?true:false"></loading>
+

@@ -1,7 +1,4 @@
-/**
- * Created by Administrator on 2017-03-30.
- */
-
+import {Location} from "@angular/common";
 import {Component} from "@angular/core";
 @Component({
   selector:'head-nav',
@@ -9,5 +6,11 @@ import {Component} from "@angular/core";
   styleUrls:['head.component.css']
 })
 export class HeadComponent {
+  constructor(
+    private location:Location
+  ){}
 
+  goBack(){
+    window.history.back();
+  }
 }

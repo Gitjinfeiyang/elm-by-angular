@@ -13,12 +13,16 @@ import {LocationComponent} from "./pages/location.component/location.component";
 import {CityService} from "./service/city-service";
 import {ShoppingService} from "./service/shopping-service";
 import { LoginComponent } from './pages/login.component/login.component';
+import {CommonModule} from "@angular/common";
+import {PublicModule} from "./public.module";
+import {UserService} from "./service/user-service";
 
 @NgModule({
   imports:      [
       BrowserModule,
       FormsModule,
       HttpModule,
+    PublicModule,
       RouterModule.forRoot([
         {
           path:'',
@@ -35,7 +39,7 @@ import { LoginComponent } from './pages/login.component/login.component';
         },
         {
           path:'home/:geohash',
-          loadChildren:'./pages/home.component/home.module#HomeModule'
+          loadChildren:'./pages/home.component/home.module#HomeModule',
         },
         {
           path:'login',
@@ -44,16 +48,18 @@ import { LoginComponent } from './pages/login.component/login.component';
       ]),
 
   ],
+  exports:[
+  ],
   declarations: [
     AppComponent,
-    HeadComponent,
     CityComponent,
     LocationComponent,
     LoginComponent,
   ],
   providers:[
     CityService,
-    ShoppingService
+    ShoppingService,
+    UserService
   ],
   bootstrap:    [ AppComponent ]
 })

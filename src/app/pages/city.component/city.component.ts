@@ -1,14 +1,19 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, HostBinding} from "@angular/core";
 import {CityService} from "../../service/city-service";
 import {City} from "../../Public/City";
+import {routerAnimation, fadeInOut} from "../../animations";
 
 
 @Component({
   selector:'choose-city',
   templateUrl:'city.component.html',
-  styleUrls:['city.component.css']
+  styleUrls:['city.component.css'],
+  animations:[routerAnimation,fadeInOut]
 })
 export class CityComponent implements OnInit{
+  @HostBinding('@routeAnimation') routeAnimation=true;
+  @HostBinding('style.display') display='block';
+
   constructor(private cityService:CityService){}
 
   location:City;

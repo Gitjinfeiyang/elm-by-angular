@@ -1,18 +1,23 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, HostBinding} from "@angular/core";
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import { Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 import {City} from "../../Public/City";
 import {CityService} from "../../service/city-service";
+import {routerAnimation} from "../../animations";
 
 
 
 @Component({
   selector:'location-search',
   templateUrl:'./location.component.html',
-  styleUrls:['./location.component.css']
+  styleUrls:['./location.component.css'],
+  animations:[routerAnimation]
 })
 export class LocationComponent implements OnInit{
+  @HostBinding('@routeAnimation') routeAnimation=true;
+  @HostBinding('style.display') display='block';
+
   constructor(
     private route:ActivatedRoute,
     private cityService:CityService,
@@ -37,12 +42,12 @@ export class LocationComponent implements OnInit{
   }
 
   toHomePage(location:any){
+    sessionStorage.setItem('geohash',location.geohash);
     this.router.navigate(['/home',location.geohash]);
   }
 
   setSearchHistory(result){
     this.cityService.setLocationSearchHistory(result);
-    console.log('setHistory')
   }
 
   getSearchHistory(){
@@ -53,7 +58,6 @@ export class LocationComponent implements OnInit{
     }else{
       this.searchHistory=[{name:'无记录'}]
     }
-    console.log(this.searchHistory);
   }
 
   clearSearchHistory(){
