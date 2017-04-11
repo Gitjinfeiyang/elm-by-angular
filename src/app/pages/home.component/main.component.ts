@@ -26,6 +26,7 @@ export  class MainComponent implements OnInit{
       .subscribe(location => {
         this.shoppingService.location = location;
         sessionStorage.setItem('location',JSON.stringify(location));
+        sessionStorage.setItem('location',JSON.stringify(location));
         this.router.navigate(['home'],{relativeTo:this.route});
       });
   }

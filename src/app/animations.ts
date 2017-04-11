@@ -1,6 +1,7 @@
 import { animate, AnimationEntryMetadata, state, style, transition, trigger } from '@angular/core';
 
 //主页面切换动画
+// Component transition animations
 export const routerAnimation: AnimationEntryMetadata =
   trigger('routeAnimation', [
     state('*',

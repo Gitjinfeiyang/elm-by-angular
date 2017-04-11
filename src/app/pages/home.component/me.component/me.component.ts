@@ -8,6 +8,9 @@ import {routerAnimation} from "../../../animations";
   templateUrl:'./me.component.html',
   styleUrls:['./me.component.css'],
   animations:[routerAnimation],
+  styleUrls:['./me.component.css'],
+  animations:[routerAnimation],
+  styleUrls:['./me.component.css']
 })
 export class MeComponent implements OnInit{
   @HostBinding('@routeAnimation') routeAnimation=true;
@@ -24,5 +27,11 @@ export class MeComponent implements OnInit{
     // if(this.userService.isLogined()){
     //   this.userProfile=this.userService.getUserProfile();
     // }
+    // if(this.userService.isLogined()){
+    //   this.userProfile=this.userService.getUserProfile();
+    // }
+    if(this.userService.isLogined()){
+      this.userProfile=this.userService.getUserProfile();
+    }
   }
 }
