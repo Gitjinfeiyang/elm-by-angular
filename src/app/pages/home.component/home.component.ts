@@ -2,14 +2,14 @@ import {Component, OnInit, HostBinding} from "@angular/core";
 import {CityService} from "../../service/city-service";
 import {ShoppingService} from "../../service/shopping-service";
 import {Router, ActivatedRoute, Params} from "@angular/router";
-import {routerAnimation, fadeInOut} from "../../animations";
+import {routerAnimation, fadeOut} from "../../animations";
 
 
 @Component({
   selector: 'home-page',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  animations:[routerAnimation,fadeInOut]
+  animations:[routerAnimation,fadeOut]
 })
 export class HomeComponent implements OnInit {
   @HostBinding('@routeAnimation') routeAnimation = true;

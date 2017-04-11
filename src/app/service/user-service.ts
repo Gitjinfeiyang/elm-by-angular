@@ -97,11 +97,8 @@ export class UserService{
   }
 
   requestOrders(){
-<<<<<<< HEAD
-    return this.http.get(`/api/bos/v2/users/${sessionStorage.getItem('userId')}/orders?limit=10&offset=0`)
-=======
+    this.http.get(`/api/bos/v2/users/${sessionStorage.getItem('userId')}/orders?limit=10&offset=0`)
     return this.http.get(`/api/bos/v2/users/${this.userProfile.user_id}/orders?limit=10&offset=0`)
->>>>>>> 1d8024f74c3020f0dd21744d3a20d11e2420d733
       .toPromise()
       .then(response => {
         return Promise.resolve(response.json());

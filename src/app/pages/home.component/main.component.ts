@@ -25,10 +25,8 @@ export  class MainComponent implements OnInit{
       .switchMap((params: Params) => this.cityService.getLocationDetail(params['geohash']))
       .subscribe(location => {
         this.shoppingService.location = location;
-<<<<<<< HEAD
         sessionStorage.setItem('location',JSON.stringify(location));
-=======
->>>>>>> 1d8024f74c3020f0dd21744d3a20d11e2420d733
+        sessionStorage.setItem('location',JSON.stringify(location));
         this.router.navigate(['home'],{relativeTo:this.route});
       });
   }

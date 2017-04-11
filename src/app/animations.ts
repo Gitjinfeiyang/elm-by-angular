@@ -1,5 +1,6 @@
 import { animate, AnimationEntryMetadata, state, style, transition, trigger } from '@angular/core';
 
+//主页面切换动画
 // Component transition animations
 export const routerAnimation: AnimationEntryMetadata =
   trigger('routeAnimation', [
@@ -25,6 +26,8 @@ export const routerAnimation: AnimationEntryMetadata =
     //   }))
     // ])
   ]);
+
+//
 export const slideLeftAnimation:AnimationEntryMetadata=
   trigger('slideLAnimation',[
     state('*',style({
@@ -45,6 +48,8 @@ export const slideLeftAnimation:AnimationEntryMetadata=
       }))
     ])
   ]);
+
+//淡出淡入动画
 export const fadeInOut:AnimationEntryMetadata =
   trigger('fadeInOut',[
     state('*',style({
@@ -62,6 +67,8 @@ export const fadeInOut:AnimationEntryMetadata =
       }))
     ])
   ]);
+
+//
 export const fadeInUp:AnimationEntryMetadata=
   trigger('fadeInUp',[
     state('*',style({
@@ -76,6 +83,18 @@ export const fadeInUp:AnimationEntryMetadata=
     transition(':leave',[
       animate('0.4s ease',style({
         transform:'translateY(-100%)'
+      }))
+    ])
+  ]);
+
+export const fadeOut:AnimationEntryMetadata=
+  trigger('fadeOut',[
+    state('*',style({
+      opacity:1
+    })),
+    transition(':leave',[
+      animate('0.4s ease',style({
+        opacity:0
       }))
     ])
   ]);

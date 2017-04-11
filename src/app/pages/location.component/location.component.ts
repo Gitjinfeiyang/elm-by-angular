@@ -42,11 +42,9 @@ export class LocationComponent implements OnInit{
   }
 
   toHomePage(location:any){
-<<<<<<< HEAD
     sessionStorage.setItem('geohash',location.geohash);
-=======
+    sessionStorage.setItem('geohash',location.geohash);
     // localStorage.setItem('geohash',location.geohash);
->>>>>>> 1d8024f74c3020f0dd21744d3a20d11e2420d733
     this.router.navigate(['/home',location.geohash]);
   }
 
