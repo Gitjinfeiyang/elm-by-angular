@@ -3,6 +3,7 @@ import {HeadComponent} from "./components/head.component/head.component";
 import {PopupComponent} from "./components/popup.component/popup.component";
 import {LoadingComponent} from "./components/loading.component/loading.component";
 import {CommonModule} from "@angular/common";
+import {RatingComponent} from "./components/rating.component/rating.component";
 
 
 @NgModule({
@@ -12,12 +13,14 @@ import {CommonModule} from "@angular/common";
   exports:[
     HeadComponent,
     PopupComponent,
-    LoadingComponent
+    LoadingComponent,
+    RatingComponent
   ],
   declarations:[
     HeadComponent,
     PopupComponent,
-    LoadingComponent
+    LoadingComponent,
+    RatingComponent
     ]
 })
 export class PublicModule{}

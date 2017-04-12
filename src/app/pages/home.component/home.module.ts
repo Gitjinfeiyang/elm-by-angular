@@ -11,9 +11,8 @@ import {CommonModule} from "@angular/common";
 import {MainComponent} from "./main.component";
 import {UserService} from "../../service/user-service";
 import {MeComponent} from "./me.component/me.component";
-import {HeadComponent} from "../../components/head.component/head.component";
-import {AppModule} from "../../app.module";
 import {PublicModule} from "../../public.module";
+import {ShopComponent} from "./shop.component/shop.component";
 
 @NgModule({
   imports:[
@@ -31,11 +30,6 @@ import {PublicModule} from "../../public.module";
         path:'main',
         component:MainComponent,
         children:[
-          // {
-          //   path:'',
-          //   redirectTo:'home',
-          //   pathMatch:'full'
-          // },
           {
             path:'home',
             component:HomeComponent
@@ -43,9 +37,14 @@ import {PublicModule} from "../../public.module";
           {
             path:'me',
             component:MeComponent
+          },
+          {
+            path:'shop/:id',
+            component:ShopComponent
           }
         ]
       }
+
 
 
     ])
@@ -56,6 +55,7 @@ import {PublicModule} from "../../public.module";
     ShoppingListComponent,
     MainComponent,
     MeComponent,
+    ShopComponent
   ],
   exports:[
   ],

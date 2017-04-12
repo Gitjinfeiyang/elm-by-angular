@@ -1,4 +1,18 @@
 .seller-box{display: flex; padding:10px; border-bottom: 1px solid #e4e4e4;}
-.seller-img-wrapper{flex:0 80px; height:80px; }
-.seller-img-wrapper img{width:100%;}
-.seller-main{flex:1; padding-left: 10px;}
+.seller-img-wrapper{flex:0 80px; height:80px;}
+.seller-img-wrapper img{width:80px; height:80px;}
+.seller-main{flex:1; padding-left: 10px; white-space: nowrap;}
+.line-top{line-height: 14px;}
+.line-middle,.line-bottom{font-size: 12px;}
+.line-top,.line-bottom,.line-middle{display: flex;}
+.line-left{flex: 1; white-space: nowrap;text-overflow: ellipsis; overflow: hidden;}
+.line-right{flex:0 80px; text-align: right;}
+.line-middle .line-left>*{display: inline-block;}
+.premium{margin:0 4px; padding:0 4px; border-radius: 2px; background:#ffd930; font-size: 12px;}
+.line-top .line-right span{margin-right:4px;font-size: 12px; color:#ccc; line-height: 12px;}
+.rating-num{color:#ff6000;}
+.recent-order-num,.distance,.delivery-fee{color:#999;}
+.order-lead-time{color:#2395ff;}
+.delivery-solid{border:1px solid #2395ff; color:#2395ff; padding:0 2px;}
+.delivery-text{background:#2395ff; color:#fff; padding:0 3px;}
+.delivery-text,.delivery-solid{display: inline-block; border-radius: 2px; line-height: 14px;}

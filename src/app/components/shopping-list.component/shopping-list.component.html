@@ -1,12 +1,34 @@
 <div class="list-wrapper">
+  <h1 *ngIf="test">{{test}}</h1>
   <ul>
-    <li *ngFor="let seller of sellers" class="seller-box">
+    <li *ngFor="let seller of sellers" class="seller-box" (click)="toShop(seller.id)">
       <div class="seller-img-wrapper">
         <img [src]="getImgPath(seller.image_path)">
       </div>
       <div class="seller-main">
-        <div class="seller-title">
-          <h5>{{seller.name}}</h5>
+        <div class="line-top">
+          <h5 class="line-left"><span class="premium" *ngIf="seller.is_premium">品牌</span>{{seller.name}}</h5>
+          <p class="line-right" *ngIf="seller.supports"><span *ngFor="let support of seller.supports">{{support.icon_name}}</span></p>
+        </div>
+        <div class="line-middle">
+          <p class="line-left">
+            <span class="svg-wrapper"><rating *ngIf="seller.rating" [rating]="seller.rating"></rating></span>
+            <span class="rating-num">{{seller.rating}}</span>
+            <span class="recent-order-num">月售{{seller.recent_order_num}}单</span>
+          </p>
+          <p class="line-right" *ngIf="seller.delivery_mode">
+            <span class="delivery-solid" *ngIf="seller.delivery_mode.is_solid">准时达</span>
+            <span class="delivery-text">{{seller.delivery_mode.text}}</span>
+          </p>
+        </div>
+        <div class="line-bottom">
+          <p class="line-left">
+            <span class="delivery-fee">{{seller.float_minimum_order_amount}}元起送 / 配送费{{seller.float_delivery_fee}}元</span>
+          </p>
+          <p class="line-right">
+            <span class="distance">{{(seller.distance/1000).toFixed(2)}}km /</span>
+            <span class="order-lead-time">{{seller.order_lead_time}}分钟</span>
+          </p>
         </div>
       </div>
     </li>

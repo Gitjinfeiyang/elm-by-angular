@@ -1,0 +1,7 @@
+<div class="ratings">
+  <span class="svg-wrapper" *ngFor="let rating of ratings">
+    <svg class="icon" aria-hidden="true">
+      <use [attr.xlink:href]="rating"></use>
+    </svg>
+  </span>
+</div>

@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, OnInit, Output, EventEmitter} from "@angular/core";
 
 
 @Component({
@@ -6,6 +6,11 @@ import {Component} from "@angular/core";
   templateUrl:'./shop.component.html',
   styleUrls:['./shop.component.css']
 })
-export class ShopComponent{
+export class ShopComponent implements OnInit{
+  @Output() hideNav=new EventEmitter();
+
+  ngOnInit(): void {
+    this.hideNav.emit();
+  }
 
 }

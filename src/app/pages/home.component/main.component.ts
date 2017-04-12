@@ -6,8 +6,8 @@ import {routerAnimation} from "../../animations";
 @Component({
   selector:'main-page',
   template:`
-<router-outlet></router-outlet>
-<nav-footer></nav-footer>
+<router-outlet (activate)="hideNav($event)"></router-outlet>
+<nav-footer *ngIf="showNav"></nav-footer>
 `,
   styles:[],
 })
@@ -20,6 +20,8 @@ export  class MainComponent implements OnInit{
     private cityService:CityService
   ){}
 
+  showNav=true;
+
   ngOnInit(){
     this.route.params
       .switchMap((params: Params) => this.cityService.getLocationDetail(params['geohash']))
@@ -29,5 +31,13 @@ export  class MainComponent implements OnInit{
         sessionStorage.setItem('location',JSON.stringify(location));
         this.router.navigate(['home'],{relativeTo:this.route});
       });
+  }
+
+  hideNav(e){
+    if(e.hideNav){
+      this.showNav=false;
+    }else{
+      this.showNav=true;
+    }
   }
 }

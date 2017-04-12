@@ -1,4 +1,5 @@
-import {Component, Input} from "@angular/core";
+import {Component, Input, AfterContentChecked} from "@angular/core";
+import {ActivatedRoute, Router} from "@angular/router";
 
 
 
@@ -7,10 +8,14 @@ import {Component, Input} from "@angular/core";
   templateUrl:'./shopping-list.component.html',
   styleUrls:['shopping-list.component.css']
 })
-export class ShoppingListComponent {
-  constructor(){}
+export class ShoppingListComponent{
+  constructor(
+    private route:ActivatedRoute,
+    private router:Router
+  ){}
 
   @Input() sellers:any;
+  @Input() test:any;
   imgUrl='https://fuss10.elemecdn.com';
 
   getImgPath(path) {
@@ -27,9 +32,8 @@ export class ShoppingListComponent {
     return this.imgUrl + url
   }
 
-  addEvent(){
-    window.onscroll=function(e){
-      console.log('scroll')
-    }
+  toShop(id){
+    this.router.navigate(['shop',id],{relativeTo:this.route.parent});
   }
+
 }
