@@ -8,12 +8,6 @@ import {routerAnimation} from "../../../animations";
   templateUrl:'./me.component.html',
   styleUrls:['./me.component.css'],
   animations:[routerAnimation],
-<<<<<<< HEAD
-=======
-  styleUrls:['./me.component.css'],
-  animations:[routerAnimation],
-  styleUrls:['./me.component.css']
->>>>>>> eeabce6e3ceb2ad354ebd2bde4f528a24fc7371f
 })
 export class MeComponent implements OnInit{
   @HostBinding('@routeAnimation') routeAnimation=true;
