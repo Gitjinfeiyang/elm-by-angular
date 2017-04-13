@@ -16,7 +16,6 @@ export  class MainComponent implements OnInit{
   constructor(
     private route:ActivatedRoute,
     private router:Router,
-    private shoppingService:ShoppingService,
     private cityService:CityService
   ){}
 
@@ -26,9 +25,6 @@ export  class MainComponent implements OnInit{
     this.route.params
       .switchMap((params: Params) => this.cityService.getLocationDetail(params['geohash']))
       .subscribe(location => {
-        this.shoppingService.location = location;
-        sessionStorage.setItem('location',JSON.stringify(location));
-        sessionStorage.setItem('location',JSON.stringify(location));
         this.router.navigate(['home'],{relativeTo:this.route});
       });
   }

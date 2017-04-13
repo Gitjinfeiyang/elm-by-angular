@@ -1,5 +1,6 @@
 import {Component, Input, AfterContentChecked} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
+import {getImgPath} from "../../service/shopping-service";
 
 
 
@@ -16,24 +17,13 @@ export class ShoppingListComponent{
 
   @Input() sellers:any;
   @Input() test:any;
-  imgUrl='https://fuss10.elemecdn.com';
-
-  getImgPath(path) {
-    let suffix;
-    if (!path) {
-      return 'http://test.fe.ptdev.cn/elm/elmlogo.jpeg'
-    }
-    if (path.indexOf('jpeg') !== -1) {
-      suffix = '.jpeg'
-    } else {
-      suffix = '.png'
-    }
-    let url = '/' + path.substr(0, 1) + '/' + path.substr(1, 2) + '/' + path.substr(3) + suffix;
-    return this.imgUrl + url
-  }
 
   toShop(id){
     this.router.navigate(['shop',id],{relativeTo:this.route.parent});
+  }
+
+  getImgPath(path){
+    return getImgPath(path);
   }
 
 }

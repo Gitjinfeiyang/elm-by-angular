@@ -1,5 +1,5 @@
 <div class="header-top">
-  <marquee class="location-wrapper" *ngIf="location">{{location.address}} ></marquee>
+  <marquee class="location-wrapper" *ngIf="location" [routerLink]="['/city']">{{location.address}} ></marquee>
   <div class="shopping-search">
     <input type="text" placeholder="搜索商家、商品" />
   </div>

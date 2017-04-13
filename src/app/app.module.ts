@@ -58,7 +58,6 @@ import {UserService} from "./service/user-service";
   ],
   providers:[
     CityService,
-    ShoppingService,
     UserService
   ],
   bootstrap:    [ AppComponent ]

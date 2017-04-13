@@ -48,7 +48,10 @@ export class CityService {
   getLocationDetail(geohash:String){
     return this.http.get('/api/v2/pois/'+geohash)
       .toPromise()
-      .then(response => response.json())
+      .then(response => {
+        localStorage.setItem('location',JSON.stringify(response.json()));
+        response.json();
+      })
       .catch(err => console.log(err));
   }
 

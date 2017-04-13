@@ -1,0 +1,58 @@
+<div class="foods-wrapper" *ngIf="sellerDetail">
+  <div class="header">
+    <div class="header-bg">
+      <img width="100%" height="100%" [src]="getImgPath(sellerDetail.image_path)" />
+    </div>
+    <div class="header-top">
+      <span class="iconfont">&#xe6a8;</span>
+    </div>
+    <div class="content">
+      <div class="img-wrapper">
+        <img [src]="getImgPath(sellerDetail.image_path)" />
+      </div>
+      <div class="text-wrapper">
+        <h4 class="title">{{sellerDetail.name}}</h4>
+        <p>{{sellerDetail.is_extra?'':'商家配送'}}/{{sellerDetail.order_lead_time}}分钟送达/{{sellerDetail.piecewise_agent_fee.description}}  ></p>
+        <p>{{sellerDetail.promotion_info}}</p>
+      </div>
+    </div>
+    <div class="description">
+      <p>{{sellerDetail.description}}</p>
+    </div>
+  </div>
+  <div class="shop-nav">
+    <div><span>商品</span></div>
+    <div><span>评价</span></div>
+  </div>
+  <div class="content-wrapper" *ngIf="menu">
+    <div class="menu">
+      <div class="directory">
+        <ul>
+          <li *ngFor="let item of menu; let i=index" [attr.data-target]="'#item'+i" (click)="scrollTo($event)">{{item.name}}</li>
+        </ul>
+      </div>
+      <div class="food-item">
+        <ul *ngFor="let item of menu; let i=index">
+          <h5 [id]="'#item'+i">{{item.name}} <span>{{item.description}}</span></h5>
+          <li *ngFor="let items of item.foods">
+            <div class="food-desc-wrapper">
+              <div class="food-img">
+                <img [src]="getImgPath(items.image_path)" />
+              </div>
+              <div class="food-description">
+                <h4>{{items.name}}</h4>
+                <p>月售{{items.mouth_sales}}份 好评率{{items.satisfy_rate}}%</p>
+              </div>
+            </div>
+            <div class="buy-wrapper">
+              <div class="price">{{items.specfoods[0].price}}</div>
+              <div class="add-to-cart-wrapper"></div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="rating"></div>
+  </div>
+</div>
+<loading *ngIf="!sellerDetail"></loading>
