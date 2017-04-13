@@ -3,6 +3,7 @@
 .seller-img-wrapper img{width:80px; height:80px;}
 .seller-main{flex:1; padding-left: 10px; white-space: nowrap; overflow: hidden;}
 .line-top{line-height: 14px; padding-bottom: 10px;}
+.line-top .line-left{font-size: 14px;}
 .line-middle,.line-bottom{font-size: 12px;}
 .line-top,.line-bottom,.line-middle{display: flex;}
 .line-top .line-right{flex:0 60px;}

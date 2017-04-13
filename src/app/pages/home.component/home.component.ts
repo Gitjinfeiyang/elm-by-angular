@@ -13,8 +13,11 @@ export class HomeComponent implements OnInit,AfterViewChecked {
   @HostBinding('@routeAnimation') routeAnimation = true;
   @HostBinding('style.display') display = 'block';
 
-  constructor(private shoppingService: ShoppingService) {}
+  constructor(private shoppingService: ShoppingService) {
+    this.location=shoppingService.location;
+  }
 
+  location;
   category: any;
   recommendSellers: any;
   imgUrl = 'https://fuss10.elemecdn.com';
@@ -26,7 +29,8 @@ export class HomeComponent implements OnInit,AfterViewChecked {
   onScroll(e) {
     debounce(() => {
       let st = Math.max(document.body.scrollTop,document.documentElement.scrollTop);
-      if (st + this.screenH >= (this.pageH - 30)) {
+      console.log(st,this.screenH,this.pageH);
+      if (st + this.screenH >= (this.pageH - 100)) {
         this.shoppingService.getRecommendSeller()
           .then(sellers => {
             Array.prototype.push.apply(this.recommendSellers, sellers);
