@@ -74,5 +74,7 @@ import {AddToCartComponent} from "../../components/add-to-cart/add-to-cart.compo
   bootstrap:[]
 })
 export class HomeModule {
-
+constructor(){
+  console.log('homeModule init')
+}
 }

@@ -7,13 +7,10 @@ import {HttpModule} from "@angular/http";
 
 import { AppComponent }  from './app.component';
 import {CityComponent} from "./pages/city.component/city.component";
-import {HeadComponent} from "./components/head.component/head.component";
 import {LocationComponent} from "./pages/location.component/location.component";
 
 import {CityService} from "./service/city-service";
-import {ShoppingService} from "./service/shopping-service";
 import { LoginComponent } from './pages/login.component/login.component';
-import {CommonModule} from "@angular/common";
 import {PublicModule} from "./public.module";
 import {UserService} from "./service/user-service";
 

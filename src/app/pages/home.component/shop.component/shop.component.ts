@@ -62,7 +62,7 @@ export class ShopComponent implements OnInit,AfterViewChecked,OnDestroy{
     }
   }
 
-  clearCart(){
+  clearCart(){//返回后再清楚无效，因为food为重新生成的对象
     for(let i=0; i<this.shoppingService.shoppingCart['s'+this.sellerDetail.id].length; i++){
       this.shoppingService.shoppingCart['s'+this.sellerDetail.id][i].count=0;
     }
