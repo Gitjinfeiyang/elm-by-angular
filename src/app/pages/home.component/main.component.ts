@@ -27,6 +27,7 @@ export  class MainComponent implements OnInit{
       .subscribe(location => {
         this.router.navigate(['home'],{relativeTo:this.route});
       });
+    console.log('maincomponent init')
   }
 
   hideNav(e){

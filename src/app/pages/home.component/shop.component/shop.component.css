@@ -1,0 +1,53 @@
+.header{height:160px; position:relative; color:#fff; text-shadow: 1px 1px 4px #333; font-size: 12px;}
+.header-bg{width:100%; height:100%; position:absolute; left:0; right:0; filter:blur(20px); z-index: -1;}
+.header-top .iconfont{line-height: 50px; font-size: 28px;}
+.content{height:80px; display: flex;}
+.img-wrapper{height:100%; padding:0 10px;}
+.img-wrapper img{width:80px; height:80px;}
+.text-wrapper{flex:1; overflow: hidden;}
+.text-wrapper .title{font-size: 14px;}
+.text-wrapper>*{white-space: nowrap; text-overflow: ellipsis; overflow: hidden;line-height: 16px; padding-bottom: 14px;}
+.description{width:100%; margin-top: 10px; white-space: nowrap; text-overflow: ellipsis;overflow: hidden; background:rgba(0,0,0,0.1);
+  line-height: 20px; padding:0 10px;}
+.shop-nav{height:50px; display: flex; line-height: 50px; background:#fff; color:#666; border-bottom: 1px solid #e4e4e4;}
+.shop-nav>div{flex:1; text-align: center;}
+.content-wrapper{overflow: hidden;}
+.menu{display: flex; height:100%; font-size: 12px;}
+.directory{flex:0 80px; flex-shrink:0; border-right:1px solid #e4e4e4; height:100%; overflow: auto; color:#333;}
+.directory li{border-bottom: 1px dotted #e4e4e4; line-height: 20px; padding:16px 10px;}
+.food-item{flex:1; height:100%; overflow: auto; color:#333; font-size: 12px; }
+.food-item li{border-bottom: 1px solid #f5f5f5; line-height: normal;}
+.food-item h5{font-size: 12px; line-height: 30px; background:#f2f2f2; text-indent: 10px;}
+.food-item h5 span{color:#666666;}
+.food-desc-wrapper{display: flex;}
+.food-img{padding:0 10px; flex:0 80px; height:60px; flex-shrink: 0;}
+.food-img img{width:100%; height:100%;}
+.food-description{flex:1; overflow: hidden;}
+.food-description>*{line-height: 15px; padding-bottom: 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+.buy-wrapper{display: flex;}
+.price{flex:1;color:#f60; font-weight: 700;line-height: 30px;}
+.add-to-cart-wrapper{flex:0 80px; flex-shrink: 0; padding-right: 10px;}
+
+.shopping-cart-wrapper{width:100%; height:50px; position:fixed; bottom:0; left:0;}
+.shopping-cart{display:flex; height:100%; background:#3d3d3f; color:#fff; line-height: 50px;}
+.cart{flex:0 80px; height:100%;position:relative;}
+.cart-count{position:absolute;right:10px;top:-13px; width:20px; height:14px; line-height: 14px; border-radius: 7px;
+  background:#ff461d; text-align: center; font-size: 12px; box-shadow: 1px 1px 6px 1px #656565;}
+.icon{border:4px solid #535356;height:60px; width:60px; border-radius: 50%;
+  line-height: 57px; text-align: center; position:absolute; bottom:0; left:20px; font-size: 30px;}
+.money{flex:1; display: flex;}
+.cost{flex:0 50px; color:#f60; font-weight: 700; font-size: 20px;}
+.fee{flex:1;}
+.pay-button{flex:0 100px; background:#535356; text-align: center;}
+.allow-pay{background:#4cd964;}
+
+.cart-detail{position:absolute;top:0; left:0; width:100%; color:#3d3d3f;background:#fff; z-index: -1;
+  transition:all 0.5s;}
+.cart-detail-show{transform:translateY(-100%);}
+.title-bar ,.cart-item{display: flex;padding:0 10px;}
+.title-bar{background:#eceff1;}
+.title-bar .iconfont{flex:1;}
+.title-bar .clear-cart{text-align: right;}
+.food-name{flex:2; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+.food-price{flex:1;color:#f60; font-weight: 700;}
+.cart-detail .add-to-cart-wrapper{padding-top: 13px; padding-right: 0;}

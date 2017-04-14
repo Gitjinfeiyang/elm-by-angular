@@ -1,8 +1,8 @@
 .loading-wrapper{position:fixed; top:0; left:0; width:100vw; height:100vh;background:#fff;}
 .loading-style-wrapper{width:80px; height:80px; position:absolute; top:50%; left:50%; margin-left:-40px; margin-top:-60px;
-  font-size: 60px; line-height: 80px; text-align: center;}
+  font-size: 40px; line-height: 80px; text-align: center;}
 .loading-style-wrapper>div{width:100%; height:100%;}
-.loading-style-wrapper .iconfont{font-size: inherit;}
+.loading-style-wrapper .iconfont{font-size: inherit; font-weight: 100; color:#999;}
 .loading-style{animation: rotateInfinite 1s linear infinite;}
 
 @keyframes rotateInfinite {

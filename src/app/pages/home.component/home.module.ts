@@ -13,8 +13,8 @@ import {UserService} from "../../service/user-service";
 import {MeComponent} from "./me.component/me.component";
 import {PublicModule} from "../../public.module";
 import {ShopComponent} from "./shop.component/shop.component";
-import {FoodsComponent} from "./shop.component/foods.component/foods.component";
 import {FoodComponent} from "./shop.component/food.component/food.component";
+import {AddToCartComponent} from "../../components/add-to-cart/add-to-cart.component";
 
 @NgModule({
   imports:[
@@ -44,14 +44,7 @@ import {FoodComponent} from "./shop.component/food.component/food.component";
             path:'shop/:id',
             component:ShopComponent,
             children:[
-              {
-                path:'',
-                component:FoodsComponent
-              },
-              {
-                path:'food',
-                component:FoodComponent
-              }
+
             ]
           }
         ]
@@ -68,8 +61,8 @@ import {FoodComponent} from "./shop.component/food.component/food.component";
     MainComponent,
     MeComponent,
     ShopComponent,
-    FoodsComponent,
-    FoodComponent
+    FoodComponent,
+    AddToCartComponent
   ],
   exports:[
   ],

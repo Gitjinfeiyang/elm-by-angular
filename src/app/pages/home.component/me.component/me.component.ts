@@ -21,12 +21,7 @@ export class MeComponent implements OnInit{
   userAvatar;
 
   ngOnInit(){
-    // if(this.userService.isLogined()){
-    //   this.userProfile=this.userService.getUserProfile();
-    // }
-    // if(this.userService.isLogined()){
-    //   this.userProfile=this.userService.getUserProfile();
-    // }
+    console.log('me init')
     if(this.userService.isLogined()){
       this.userProfile=this.userService.getUserProfile();
     }

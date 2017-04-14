@@ -1,4 +1,98 @@
 <div class="shop-wrapper">
-  <router-outlet></router-outlet>
-  <div class="shopping-cart"></div>
+  <div class="foods-wrapper" *ngIf="sellerDetail">
+    <div class="header">
+      <div class="header-bg">
+        <img width="100%" height="100%" [src]="getImgPath(sellerDetail.image_path)" />
+      </div>
+      <div class="header-top">
+        <span class="iconfont" (click)="goBack()">&#xe697;</span>
+      </div>
+      <div class="content">
+        <div class="img-wrapper">
+          <img [src]="getImgPath(sellerDetail.image_path)" />
+        </div>
+        <div class="text-wrapper">
+          <h4 class="title">{{sellerDetail.name}}</h4>
+          <p>{{sellerDetail.is_extra?'':'商家配送'}}/{{sellerDetail.order_lead_time}}分钟送达/{{sellerDetail.piecewise_agent_fee.description}}  ></p>
+          <p>{{sellerDetail.promotion_info}}</p>
+        </div>
+      </div>
+      <div class="description">
+        <p>{{sellerDetail.description}}</p>
+      </div>
+    </div>
+    <div class="shop-nav">
+      <div><span>商品</span></div>
+      <div><span>评价</span></div>
+    </div>
+    <div class="content-wrapper" *ngIf="menu" [style.height]="contentH+'px'">
+      <div class="menu">
+        <div class="directory">
+          <ul>
+            <li *ngFor="let item of menu; let i=index" [attr.data-target]="'#item'+i" (click)="scrollTo($event)">{{item.name}}</li>
+          </ul>
+        </div>
+        <div class="food-item">
+          <ul *ngFor="let item of menu; let i=index">
+            <h5 [id]="'#item'+i">{{item.name}} <span>{{item.description}}</span></h5>
+            <li *ngFor="let items of item.foods">
+              <div class="food-desc-wrapper">
+                <div class="food-img">
+                  <img [src]="getImgPath(items.image_path)" />
+                </div>
+                <div class="food-description">
+                  <h4>{{items.name}}</h4>
+                  <p>月售{{items.month_sales}}份 好评率{{items.satisfy_rate}}%</p>
+                  <div class="buy-wrapper">
+                    <div class="price">{{items.specfoods[0].price}}元</div>
+                    <div class="add-to-cart-wrapper"><add-to-cart [food]="items"></add-to-cart></div>
+                  </div>
+                </div>
+              </div>
+
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="rating"></div>
+    </div>
+  </div>
+  <div class="shopping-cart-wrapper" *ngIf="sellerDetail">
+    <div class="shopping-cart">
+      <div class="cart" (click)="cartDetail.show=!cartDetail.show">
+        <div class="icon iconfont" [style.background]="cost>0?'#3190e8':'#3d3d3f'">&#xe63f;</div>
+        <span class="cart-count" *ngIf="count>0">{{count}}</span>
+      </div>
+      <div class="money">
+        <div class="cost" *ngIf="cost>0">
+          ￥{{cost}}
+        </div>
+        <div class="fee">
+          还需配送费￥{{sellerDetail?sellerDetail.float_delivery_fee:0}}
+        </div>
+      </div>
+      <div class="pay-button" [class.allow-pay]="cost>0">
+        {{sellerDetail?payButtonText(sellerDetail):'马上下单'}}
+      </div>
+      <div class="cart-detail" [class.cart-detail-show]="cartDetail.show&&cost>0" #cartDetail>
+        <div class="title-bar">
+          <h3 class="iconfont">&#xe63f; 购物车</h3>
+          <div class="clear-cart iconfont" (click)="clearCart()">&#xe69d; 清空</div>
+        </div>
+        <div class="cart-content">
+          <ul>
+            <li class="cart-item" *ngFor="let food of shoppingCart">
+              <h3 class="food-name">{{food.name}}</h3>
+              <h3 class="food-price">￥{{food.specfoods[0].price}}</h3>
+              <div class="add-to-cart-wrapper">
+                <add-to-cart [food]="food"></add-to-cart>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+<loading *ngIf="!sellerDetail" [@fadeOut]></loading>
+
