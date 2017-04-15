@@ -14,19 +14,13 @@ import {routerAnimation} from "../../animations";
 export  class MainComponent implements OnInit{
 
   constructor(
-    private route:ActivatedRoute,
     private router:Router,
-    private cityService:CityService
   ){}
 
   showNav=true;
 
   ngOnInit(){
-    this.route.params
-      .switchMap((params: Params) => this.cityService.getLocationDetail(params['geohash']))
-      .subscribe(location => {
-        this.router.navigate(['home'],{relativeTo:this.route});
-      });
+
     console.log('maincomponent init')
   }
 

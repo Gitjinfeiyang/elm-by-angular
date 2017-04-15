@@ -6,11 +6,9 @@
 </div>
 <div class="category-wrapper" *ngIf="category">
   <ul>
-    <li class="category-box" *ngFor="let c of category">
-      <a href="c.link">
+    <li class="category-box" *ngFor="let c of category" (click)="toCategory(c.title)">
         <img class="category-icon" [src]="imgUrl+c.image_url" />
         <h5 class="category-title">{{c.title}}</h5>
-      </a>
     </li>
   </ul>
 </div>

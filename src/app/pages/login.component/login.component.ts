@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostBinding, OnInit} from '@angular/core';
 import {UserService} from "../../service/user-service";
 import {Location} from "@angular/common";
+import {routerAnimation} from "../../animations";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  animations:[routerAnimation]
 })
 export class LoginComponent implements OnInit {
 
@@ -13,6 +15,9 @@ export class LoginComponent implements OnInit {
     private userService:UserService,
     private location:Location
   ) { }
+
+  @HostBinding('@routeAnimation') routeAnimation=true;
+  @HostBinding('style.display') display='block';
 
   loginByPhoneNum=true;//登录方式
   notice:String;//登陆提示信息

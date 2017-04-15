@@ -15,6 +15,8 @@ import {PublicModule} from "../../public.module";
 import {ShopComponent} from "./shop.component/shop.component";
 import {FoodComponent} from "./shop.component/food.component/food.component";
 import {AddToCartComponent} from "../../components/add-to-cart/add-to-cart.component";
+import { CategoryComponent } from './category.component/category.component';
+import {ConditionsComponent} from "../../components/conditions.component/conditions.component";
 
 @NgModule({
   imports:[
@@ -33,6 +35,11 @@ import {AddToCartComponent} from "../../components/add-to-cart/add-to-cart.compo
         component:MainComponent,
         children:[
           {
+            path:'',
+            redirectTo:'home',
+            pathMatch:'full'
+          },
+          {
             path:'home',
             component:HomeComponent
           },
@@ -42,10 +49,11 @@ import {AddToCartComponent} from "../../components/add-to-cart/add-to-cart.compo
           },
           {
             path:'shop/:id',
-            component:ShopComponent,
-            children:[
-
-            ]
+            component:ShopComponent
+          },
+          {
+            path:'category',
+            component:CategoryComponent
           }
         ]
       }
@@ -62,14 +70,16 @@ import {AddToCartComponent} from "../../components/add-to-cart/add-to-cart.compo
     MeComponent,
     ShopComponent,
     FoodComponent,
-    AddToCartComponent
+    AddToCartComponent,
+    CategoryComponent,
+    ConditionsComponent
   ],
   exports:[
   ],
   providers:[
-    CityService,
+    // CityService,
     ShoppingService,
-    UserService
+    // UserService
   ],
   bootstrap:[]
 })

@@ -1,0 +1,63 @@
+<div class="conditions-wrapper" [ngSwitch]="condition">
+  <div class="select-wrapper">
+    <div class="conditions-left" (click)="getSchema(); condition=='left'?condition='':condition='left';">
+      <ng-content select=".con-left"></ng-content>
+      <div class="conditions-detail" *ngSwitchCase="'left'" (click)="stopP($event)">
+        <div class="schema-menu">
+          <ul>
+            <li *ngFor="let menu of schema" (click)="getSubCategories(menu)">
+              <span class="menu-name">{{menu.name}}</span>
+              <span class="menu-count">{{menu.count}}</span>
+              <span class="iconfont">&#xe6a7;</span>
+            </li>
+          </ul>
+        </div>
+        <div class="schema-list">
+          <ul *ngIf="subCategories">
+            <li *ngFor="let category of subCategories">
+              <span class="category-name">{{category.name}}</span>
+              <span class="category-count">{{category.count}}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="conditions-middle" (click)="condition=='middle'?condition='':condition='middle'">
+      <ng-content select=".con-middle"></ng-content>
+      <div class="conditions-detail" *ngSwitchCase="'middle'" (click)="stopP($event)">
+        <ul>
+          <li class="hot"><span class="iconfont">&#xe66c;</span><span class="condition-name">销量最高</span></li>
+          <li class="distance"><span class="iconfont">&#xe715;</span><span class="condition-name">距离最近</span></li>
+          <li class="smart"><span class="iconfont">&#xe6ae;</span><span class="condition-name">智能排序</span></li>
+          <li class="fee"><span class="iconfont">&#xe6c5;</span><span class="condition-name">起送价最低</span></li>
+          <li class="fast"><span class="iconfont">&#xe6bb;</span><span class="condition-name">配送最快</span></li>
+          <li class="rate"><span class="iconfont">&#xe717;</span><span class="condition-name">评分最高</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="conditions-right" (click)="getDeliveryMode(); getActivity(); condition=='right'?condition='':condition='right';">
+      <ng-content select=".con-right"></ng-content>
+      <div class="conditions-detail" *ngSwitchCase="'right'" (click)="stopP($event)">
+        <div class="delivery-mode">
+          <dl>
+            <dt>配送方式</dt>
+            <dd *ngFor="let mode of deliveryMode">{{mode.text}}</dd>
+          </dl>
+        </div>
+        <div class="activities">
+          <dl>
+            <dt>商家属性(可多选)</dt>
+            <dd *ngFor="let a of activity">
+              <span class="icon" [style.border]="'1px solid #'+a.icon_color">{{a.icon_name}}</span>
+              <span class="text">{{a.name}}</span>
+            </dd>
+          </dl>
+        </div>
+        <div class="buttons-wrapper">
+          <div class="clear-button">清空</div>
+          <div class="submit-button">确定</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

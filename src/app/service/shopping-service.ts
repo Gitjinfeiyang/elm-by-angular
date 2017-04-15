@@ -19,9 +19,52 @@ export class ShoppingService {
   shoppingCart={};
 
   location;
-  offset = -20;
   sellerDetail;
   sellerId;
+
+  getActivity(){
+    return this.http.get(`/api/shopping/v1/restaurants/activity_attributes?latitude=${this.location.latitude}&longitude=${this.location.longitude}&kw=`)
+      .toPromise()
+      .then(response => {
+        return Promise.resolve(response.json())
+      })
+      .catch(response => {
+        console.log(response)
+      })
+  }
+
+  getDeliveryMode(){
+    return this.http.get(`/api/shopping/v1/restaurants/delivery_modes?latitude=${this.location.latitude}&longitude=${this.location.longitude}&kw=`)
+      .toPromise()
+      .then(response => {
+        return Promise.resolve(response.json())
+      })
+      .catch(response => {
+        console.log(response)
+      })
+  }
+
+  getSchema(){
+    return this.http.get(`/api/shopping/restaurant/category/urlschema?latitude=${this.location.latitude}&longitude=${this.location.longitude}&flavor_ids[]=207&flavor_ids[]=220&flavor_ids[]=233&flavor_ids[]=260&show_name=%E7%BE%8E%E9%A3%9F`)
+      .toPromise()
+      .then(response => {
+        return Promise.resolve(response.json());
+      })
+      .catch(response => {
+        console.log(response);
+      })
+  }
+
+  getCategoryList(offset,id){
+    return this.http.get(`/api/shopping/restaurants?latitude=${this.location.latitude}&longitude=${this.location.longitude}&keyword=&offset=${offset}&limit=20&extras[]=activities&restaurant_category_ids[]=207`)
+      .toPromise()
+      .then(response => {
+        return Promise.resolve(response.json())
+      })
+      .catch(response => {
+        console.log(response)
+      })
+  }
 
   getCategory(): Promise<any> {
     return this.http.get('/api/v2/index_entry?geohash=' + this.location.geohash + '&group_type=1&flags[]=F')
@@ -30,9 +73,8 @@ export class ShoppingService {
       .catch(err => console.log(err));
   }
 
-  getRecommendSeller() {
-    this.offset += 20;
-    return this.http.get(`/api/shopping/restaurants?latitude=${this.location.latitude}&longitude=${this.location.longitude}&offset=${this.offset}&limit=20&extras[]=activities&keyword=&restaurant_category_id=&restaurant_category_ids[]=&order_by=&delivery_mode[]=`)
+  getRecommendSeller(offset) {
+    return this.http.get(`/api/shopping/restaurants?latitude=${this.location.latitude}&longitude=${this.location.longitude}&offset=${offset}&limit=20&extras[]=activities&keyword=&restaurant_category_id=&restaurant_category_ids[]=&order_by=&delivery_mode[]=`)
       .toPromise()
       .then(response => response.json())
       .catch(err => console.log(err));

@@ -3,6 +3,7 @@ import {Http} from "@angular/http";
 
 import 'rxjs/add/operator/toPromise';
 
+
 @Injectable()
 export class UserService{
   constructor(private http: Http,) {
@@ -51,6 +52,7 @@ export class UserService{
           throw new Error(res.message);
         }
       });
+
   }
 
   mobileLogin(code){
@@ -66,6 +68,7 @@ export class UserService{
       .catch(response => {
         throw new Error(response.json().message);
       })
+
   }
 
   passwordLogin(username,password,captchaCode){

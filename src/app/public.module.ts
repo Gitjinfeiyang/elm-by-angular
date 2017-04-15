@@ -23,4 +23,8 @@ import {RatingComponent} from "./components/rating.component/rating.component";
     RatingComponent
     ]
 })
-export class PublicModule{}
+export class PublicModule{
+  constructor(){
+    console.log('publicModule init')
+  }
+}

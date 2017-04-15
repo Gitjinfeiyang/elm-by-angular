@@ -50,7 +50,7 @@ export class CityService {
       .toPromise()
       .then(response => {
         localStorage.setItem('location',JSON.stringify(response.json()));
-        response.json();
+        return response.json();
       })
       .catch(err => console.log(err));
   }

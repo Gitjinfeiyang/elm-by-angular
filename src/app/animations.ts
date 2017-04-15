@@ -98,3 +98,8 @@ export const fadeOut:AnimationEntryMetadata=
       }))
     ])
   ]);
+
+export const slideDownUp:AnimationEntryMetadata=
+  trigger('slideDownUp',[
+    
+  ]);
