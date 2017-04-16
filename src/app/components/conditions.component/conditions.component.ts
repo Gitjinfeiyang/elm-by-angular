@@ -35,6 +35,7 @@ export class ConditionsComponent {
   }
 
   getSchema(){
+    // console.log(this.condition);
       if(!this.schema){
         this.shoppingService.getSchema()
           .then(response=> {
