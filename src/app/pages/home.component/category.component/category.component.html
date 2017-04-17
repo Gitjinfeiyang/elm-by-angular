@@ -3,10 +3,6 @@
     <div class="nav-left iconfont">&#xe697;返回</div>
     <div class="nav-middle" *ngIf="title">{{title}}</div>
   </head-nav>
-  <conditions>
-    <div class="con-left">美食</div>
-    <div class="con-middle">排序</div>
-    <div class="con-right">筛选</div>
-  </conditions>
+  <conditions (paramsChanged)="paramsChangedHandle($event)" [title]="title"></conditions>
   <shopping-list *ngIf="categoryList" [sellers]="categoryList"></shopping-list>
 </div>

@@ -3,6 +3,7 @@
   <ul>
     <li *ngFor="let seller of sellers" class="seller-box" (click)="toShop(seller.id)">
       <div class="seller-img-wrapper">
+        <div class="new-seller-icon" *ngIf="seller.is_new">新店</div>
         <img [src]="getImgPath(seller.image_path)">
       </div>
       <div class="seller-main">

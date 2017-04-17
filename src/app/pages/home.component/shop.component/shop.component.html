@@ -22,11 +22,11 @@
       </div>
     </div>
     <div class="shop-nav">
-      <div><span>商品</span></div>
-      <div><span>评价</span></div>
+      <div (click)="content='menu'"><span>商品</span></div>
+      <div (click)="content='rating'"><span>评价</span></div>
     </div>
-    <div class="content-wrapper" *ngIf="menu" [style.height]="contentH+'px'">
-      <div class="menu">
+    <div class="content-wrapper" *ngIf="menu" [style.height]="contentH+'px'" [ngSwitch]="content">
+      <div class="menu" *ngSwitchCase="'menu'">
         <div class="directory">
           <ul>
             <li *ngFor="let item of menu; let i=index" [attr.data-target]="'#item'+i" (click)="scrollTo($event)">{{item.name}}</li>
@@ -54,7 +54,20 @@
           </ul>
         </div>
       </div>
-      <div class="rating"></div>
+      <div class="rating" *ngSwitchCase="'rating'">
+        <div class="rating-detail">
+          <div class="score">
+            <h2>{{sellerDetail.rating}}</h2>
+            <p>综合评价</p>
+            <p>高于周边商家73.5%</p>
+          </div>
+          <div class="ratings-wrapper">
+            <h4>服务态度</h4>
+            <div><rating [rating]="sellerDetail.rating"></rating></div>
+            <h4>送达时间:{{sellerDetail.order_lead_time}}分钟</h4>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="shopping-cart-wrapper" *ngIf="sellerDetail">

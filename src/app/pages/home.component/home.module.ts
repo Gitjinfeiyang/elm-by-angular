@@ -17,6 +17,7 @@ import {FoodComponent} from "./shop.component/food.component/food.component";
 import {AddToCartComponent} from "../../components/add-to-cart/add-to-cart.component";
 import { CategoryComponent } from './category.component/category.component';
 import {ConditionsComponent} from "../../components/conditions.component/conditions.component";
+import { SearchComponent } from './search.component/search.component';
 
 @NgModule({
   imports:[
@@ -48,6 +49,10 @@ import {ConditionsComponent} from "../../components/conditions.component/conditi
             component:MeComponent
           },
           {
+            path:'search',
+            component:SearchComponent
+          },
+          {
             path:'shop/:id',
             component:ShopComponent
           },
@@ -72,7 +77,8 @@ import {ConditionsComponent} from "../../components/conditions.component/conditi
     FoodComponent,
     AddToCartComponent,
     CategoryComponent,
-    ConditionsComponent
+    ConditionsComponent,
+    SearchComponent
   ],
   exports:[
   ],

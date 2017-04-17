@@ -39,7 +39,7 @@ export class CityService {
   }
 
   getSearchResult(cityId:Number,keyword:String){
-    return this.http.get('/api/v1/pois?type=search&city_id='+cityId+'&keyword='+keyword)
+    return this.http.get('/api/v1/pois?type=search.component&city_id='+cityId+'&keyword='+keyword)
       .toPromise()
       .then(response => response.json())
       .catch(err => console.log(err));

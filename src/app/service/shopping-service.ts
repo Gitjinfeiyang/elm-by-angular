@@ -22,6 +22,18 @@ export class ShoppingService {
   sellerDetail;
   sellerId;
 
+  getScore(){
+    return this.http.get(`/api/ugc/v2/restaurants/375493/ratings/scores`)
+  }
+
+  getTags(){
+    return this.http.get(`ugc/v2/restaurants/375493/ratings/tags`)
+  }
+
+  getRatings(){
+    return this.http.get(`ugc/v2/restaurants/375493/ratings?has_content=true&offset=0&limit=10`)
+  }
+
   getActivity(){
     return this.http.get(`/api/shopping/v1/restaurants/activity_attributes?latitude=${this.location.latitude}&longitude=${this.location.longitude}&kw=`)
       .toPromise()
@@ -73,8 +85,14 @@ export class ShoppingService {
       .catch(err => console.log(err));
   }
 
-  getRecommendSeller(offset) {
-    return this.http.get(`/api/shopping/restaurants?latitude=${this.location.latitude}&longitude=${this.location.longitude}&offset=${offset}&limit=20&extras[]=activities&keyword=&restaurant_category_id=&restaurant_category_ids[]=&order_by=&delivery_mode[]=`)
+  getRecommendSeller(params) {
+    let activity='';
+    if(params.activities){
+      params.activities.forEach(function(id){
+        activity+='&support_ids[]='+id;
+      })
+    }
+    return this.http.get(`/api/shopping/restaurants?latitude=${this.location.latitude}&longitude=${this.location.longitude}&offset=${params.offset||0}&limit=20&extras[]=activities&keyword=&restaurant_category_id=&restaurant_category_ids[]=${params.categoryId||''}&order_by=${params.orderBy||''}&delivery_mode[]=${params.deliveryMode||''}${activity}`)
       .toPromise()
       .then(response => response.json())
       .catch(err => console.log(err));
