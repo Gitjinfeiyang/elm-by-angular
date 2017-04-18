@@ -1,7 +1,7 @@
 <div class="header-top">
   <marquee class="location-wrapper" *ngIf="location" [routerLink]="['/city']">{{location.address}} ></marquee>
   <div class="shopping-search">
-    <input type="text" placeholder="搜索商家、商品" />
+    <input type="text" placeholder="搜索商家、商品"  (keyup.enter)="toSearch(searchInput.value)" #searchInput/>
   </div>
 </div>
 <div class="category-wrapper" *ngIf="category">

@@ -20,20 +20,14 @@ export class UserService{
   userProfile:any;
 
   isLogined() {
-    console.log(sessionStorage.getItem('userId'))
-    // if(sessionStorage.getItem('userId')){
-    //   return true;
-    // }else{
-    //   return false;
-    // }
-    // this.http.get('/api/eus/v1/current_user?info_raw={}')
-    //   .toPromise()
-    //   .then(response => {
-    //     console.log(response.json())
-    //   })
-    //   .catch(response =>{
-    //
-    //   })
+    return this.http.get('/api/eus/v1/current_user?info_raw={}')
+      .toPromise()
+      .then(response => {
+        localStorage.setItem('userId',response.json());
+      })
+      .catch(response =>{
+        throw new Error();
+      })
   }
 
   sendMessage(captchaCode,phoneNum: Number) {
@@ -64,7 +58,8 @@ export class UserService{
     })
       .toPromise()
       .then(response => {
-        localStorage.setItem('userId',response.json().user_id)
+        localStorage.setItem('userId',response.json().user_id);
+        this.logined=true;
       })
       .catch(response => {
         throw new Error(JSON.stringify(response.json()));
@@ -81,6 +76,7 @@ export class UserService{
       .toPromise()
       .then(response => {
         localStorage.setItem('userId',response.json().user_id);
+        this.logined=true;
       })
       .catch(response => {
         throw new Error(JSON.stringify(response.json()));
@@ -115,7 +111,7 @@ export class UserService{
   }
 
   getUserProfile(){
-    return this.http.get(`/api/eus/v1/users/${sessionStorage.getItem('userId')}`)
+    return this.http.get(`/api/eus/v1/users/${localStorage.getItem('userId')}`)
       .toPromise()
       .then(response => {
         return Promise.resolve(response.json());

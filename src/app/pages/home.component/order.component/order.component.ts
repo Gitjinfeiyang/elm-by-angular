@@ -1,6 +1,7 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
 import {routerAnimation} from "../../../animations";
 import {UserService} from "../../../service/user-service";
+import {ShoppingService,getImgPath} from "../../../service/shopping-service";
 
 @Component({
   selector: 'app-order',
@@ -10,22 +11,33 @@ import {UserService} from "../../../service/user-service";
 })
 export class OrderComponent implements OnInit {
   constructor(
-    private userService:UserService
+    private userService:UserService,
+    private shoppingService:ShoppingService
   ) {}
 
   @HostBinding('@routeAnimation') routeAnimation=true;
   @HostBinding('style.display') display='block';
 
   orderList;
+  logined;
 
   ngOnInit() {
-    this.userService.requestOrders()
-      .then(response => {
-        this.orderList=response;
+    this.userService.isLogined()
+      .then(() => {
+        this.logined=true;
+        this.userService.requestOrders()
+          .then(response => {
+            this.orderList=response;
+          })
+          .catch(err => {
+            this.logined=false;
+          })
       })
-      .catch(err => {
-        console.log('未登录')
-      })
+
+  }
+
+  getImgPath(path){
+    return getImgPath(path);
   }
 
 }

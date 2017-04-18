@@ -1,3 +1,29 @@
-<p>
-  order works!
-</p>
+<div class="order-wrapper">
+  <head-nav>
+    <div class="nav-left">订单</div>
+  </head-nav>
+  <ul class="order-list" *ngIf="orderList" >
+    <li class="order-item" *ngFor="let order of orderList">
+      <div class="order-title">
+        <div class="img-wrapper">
+          <img [src]="getImgPath(order.restaurant_image_hash)+'?w=80&h=80'"/>
+        </div>
+        <div class="seller">
+          <p class="seller-name">{{order.restaurant_name}}</p>
+          <p class="order-time">{{order.formatted_created_at}}</p>
+        </div>
+        <div class="order-state">{{order.status_bar.title}}</div>
+      </div>
+      <div class="order-detail">
+        <div class="food-name">{{order.basket.group[0][0].name+'等'+order.total_quantity}}件商品</div>
+        <div class="total-price">￥{{order.total_amount}}</div>
+      </div>
+      <div class="buy-button">
+        <input type="button" value="再来一单" />
+      </div>
+    </li>
+  </ul>
+  <div class="no-login" *ngIf="!logined">
+    您还没有登录 <input type="button" value="立即登录" [routerLink]="['/login']" />
+  </div>
+</div>

@@ -54,6 +54,7 @@ export class SearchComponent implements OnInit {
     this.route.queryParams
       .subscribe(params => {
         if(params['keyword']){
+          this.keyword=params['keyword'];
           this.shoppingService.getRecommendSeller({search:true,keyword:params['keyword']})
             .then(response => {
               this.restaurants=[];

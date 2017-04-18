@@ -1,0 +1,17 @@
+.order-list{background:#f5f5f5; padding-bottom: 50px;}
+.order-item{padding:10px; margin-bottom: 20px; background:#fff;}
+.order-title{display: flex; height:50px;}
+.img-wrapper{flex:0 50px; height:50px; flex-shrink:0; overflow: hidden;}
+.img-wrapper img{width:50px;}
+.seller{flex:1; padding-left: 10px;}
+.seller-name{line-height: 30px;}
+.order-time{line-height: 20px; font-size: 12px; color:#666;}
+.order-state{flex:0 80px; flex-shrink: 0; line-height: 50px;}
+.order-detail{padding:20px 10px; display: flex;}
+.total-price{flex:0 60px; flex-shrink: 0;}
+.food-name{flex:1; color:#333;}
+.buy-button{text-align: right; padding:10px; border-top: 1px solid #e4e4e4;}
+.buy-button input{background:#fff; padding:0 8px; line-height: 30px; color:#3190e8; border:1px solid #3190e8; border-radius: 4px;}
+
+.no-login{width:100%; height:100vh; background:#f5f5f5; text-align: center; padding-top: 150px; color:#666;}
+.no-login input{background:#4cd964; color:#fff; line-height: 30px; padding:0 14px; border-radius: 6px;}
