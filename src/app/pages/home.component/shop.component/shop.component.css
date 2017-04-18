@@ -28,11 +28,25 @@
 .price{flex:1;color:#f60; font-weight: 700;line-height: 30px;}
 .add-to-cart-wrapper{flex:0 80px; flex-shrink: 0; padding-right: 10px;}
 
-.rating-detail{display: flex;}
+.rating{ height:100%; overflow: auto;}
+.rating-detail{display: flex; text-align: center;}
 .score,.ratings-wrapper{flex:1;}
 .score{border-right: 1px solid #e4e4e4;}
 .score h2{color:#ff461d;}
+.tags{padding:10px; border-top: 1px solid #e4e4e4;}
+.tags .tag{display: inline-block; margin-bottom: 4px; padding:2px 6px; border-radius: 3px; background:#ebf5ff; color:#6d7885;}
+.tags .unsatisfied{background:#f5f5f5;}
 
+.comment{border-bottom: 1px solid #e4e4e4; min-height: 80px; padding:8px;}
+.user{display: flex; font-size: 12px; line-height: 14px;}
+.user-avatar{flex:0 40px; flex-shrink: 0; text-align: center;}
+.user-avatar img{width:40px; height:40px;}
+.user-profile{flex:1;}
+.comment-time{flex:0 100px; flex-shrink: 0;}
+.comments-item .item{display: inline-block; width:100px; padding:8px; overflow: hidden;}
+.item-img{width:100%; height:100px; overflow: hidden;}
+.item-img img{width:100%;}
+.item-name{background:#f5f5f5; border-radius: 4px; width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
 
 
 

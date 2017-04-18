@@ -23,7 +23,7 @@
     </div>
     <div class="shop-nav">
       <div (click)="content='menu'"><span>商品</span></div>
-      <div (click)="content='rating'"><span>评价</span></div>
+      <div (click)="content='rating';getRating();getTags();"><span>评价</span></div>
     </div>
     <div class="content-wrapper" *ngIf="menu" [style.height]="contentH+'px'" [ngSwitch]="content">
       <div class="menu" *ngSwitchCase="'menu'">
@@ -38,7 +38,7 @@
             <li *ngFor="let items of item.foods">
               <div class="food-desc-wrapper">
                 <div class="food-img">
-                  <img [src]="getImgPath(items.image_path)" />
+                  <img [src]="getImgPath(items.image_path)+'?w=80&h=80'" />
                 </div>
                 <div class="food-description">
                   <h4>{{items.name}}</h4>
@@ -54,7 +54,7 @@
           </ul>
         </div>
       </div>
-      <div class="rating" *ngSwitchCase="'rating'">
+      <div class="rating" *ngSwitchCase="'rating'" [scrollLoad]="loadMoreComments">
         <div class="rating-detail">
           <div class="score">
             <h2>{{sellerDetail.rating}}</h2>
@@ -65,6 +65,39 @@
             <h4>服务态度</h4>
             <div><rating [rating]="sellerDetail.rating"></rating></div>
             <h4>送达时间:{{sellerDetail.order_lead_time}}分钟</h4>
+          </div>
+        </div>
+        <div class="user-ratings">
+          <div class="tags" *ngIf="tags">
+            <span class="tag" [class.unsatisfied]="tag.unsatisfied" *ngFor="let tag of tags" (click)="tagName=tag.name; getRating();">
+              {{tag.name}} ({{tag.count}})
+            </span>
+          </div>
+          <div class="comments">
+            <ul>
+              <li class="comment" *ngFor="let comment of ratings">
+                <div class="user">
+                  <div class="user-avatar">
+                    <img *ngIf="comment.avatar" [src]="getImgPath(comment.avatar)" />
+                    <span *ngIf="!comment.avatar" class="iconfont">&#xe6b8;</span>
+                  </div>
+                  <div class="user-profile">
+                    <p class="username">{{comment.username}}</p>
+                    <div class="rating-wrapper"><rating [rating]="comment.rating_star"></rating></div>
+                  </div>
+                  <p class="comment-time">{{comment.rated_at}}</p>
+                </div>
+                <div class="comments-text" *ngIf="comment.rating_text">{{comment.rating_text}}</div>
+                <div class="comments-item">
+                  <ul>
+                    <li class="item" *ngFor="let item of comment.item_ratings">
+                      <div class="item-img" *ngIf="item.image_hash"><img [src]="getImgPath(item.image_hash)+'?w=80&h=80'" /></div>
+                      <p class="item-name">{{item.food_name}}</p>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

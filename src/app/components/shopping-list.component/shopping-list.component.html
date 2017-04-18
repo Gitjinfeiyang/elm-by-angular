@@ -4,7 +4,7 @@
     <li *ngFor="let seller of sellers" class="seller-box" (click)="toShop(seller.id)">
       <div class="seller-img-wrapper">
         <div class="new-seller-icon" *ngIf="seller.is_new">新店</div>
-        <img [src]="getImgPath(seller.image_path)">
+        <img [src]="getImgPath(seller.image_path)+'?w=80&h=80'">
       </div>
       <div class="seller-main">
         <div class="line-top">

@@ -1,9 +1,11 @@
 import {
-  AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, HostListener, OnChanges,
+  AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, HostBinding, HostListener,
+  OnChanges,
   OnInit, SimpleChanges
 } from '@angular/core';
 import {ActivatedRoute, Params} from "@angular/router";
 import {ShoppingService,debounce} from "../../../service/shopping-service";
+import {routerAnimation} from "../../../animations";
 
 let screenH=window.innerHeight;
 let sh=0;
@@ -11,14 +13,17 @@ let sh=0;
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
-  styleUrls: ['./category.component.css']
+  styleUrls: ['./category.component.css'],
+  animations:[routerAnimation]
 })
 export class CategoryComponent implements OnInit,AfterViewChecked{
-
   constructor(
     private route:ActivatedRoute,
     private shoppingService:ShoppingService
   ) { }
+
+  @HostBinding('@routeAnimation') routeAnimation=true;
+  @HostBinding('style.display') display='block';
 
 
   categoryList;

@@ -12,7 +12,7 @@
     <div class="toLogin" *ngIf="!userProfile" [routerLink]="['/login']"><span>登录</span> | <span>注册</span></div>
     <div class="profile" *ngIf="userProfile">
       <p>{{userProfile.username}}</p>
-      <p *ngIf="userProfile.is_mobile_valid"><span class="iconfont">&#xe6c2;</span> {{userProfile.mobile}}</p>
+      <p *ngIf="userProfile.is_mobile_valid"><span class="iconfont">&#xe6a9;</span> {{userProfile.mobile}}</p>
     </div>
   </div>
 </div>
@@ -22,7 +22,7 @@
     <p>余额</p>
   </div>
   <div class="discount">
-    <p><strong>{{userProfile.git_amount}}</strong> 个</p>
+    <p><strong>{{userProfile.git_amount||0}}</strong> 个</p>
     <p>优惠</p>
   </div>
   <div class="credits">

@@ -6,3 +6,4 @@
   <conditions (paramsChanged)="paramsChangedHandle($event)" [title]="title"></conditions>
   <shopping-list *ngIf="categoryList" [sellers]="categoryList"></shopping-list>
 </div>
+<loading *ngIf="!categoryList"></loading>

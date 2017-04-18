@@ -23,15 +23,29 @@ export class ShoppingService {
   sellerId;
 
   getScore(){
-    return this.http.get(`/api/ugc/v2/restaurants/375493/ratings/scores`)
+    return this.http.get(`/api/ugc/v2/restaurants/${this.sellerId}/ratings/scores`)
   }
 
   getTags(){
-    return this.http.get(`ugc/v2/restaurants/375493/ratings/tags`)
+    return this.http.get(`/api/ugc/v2/restaurants/${this.sellerId}/ratings/tags`)
+      .toPromise()
+      .then(response => {
+        return Promise.resolve(response.json());
+      })
+      .catch(response => {
+        console.log(response)
+      })
   }
 
-  getRatings(){
-    return this.http.get(`ugc/v2/restaurants/375493/ratings?has_content=true&offset=0&limit=10`)
+  getRatings(offset,tagName){
+    return this.http.get(`/api/ugc/v2/restaurants/${this.sellerId}/ratings?has_content=true&tag_name=${tagName}&offset=${offset||0}&limit=10`)
+      .toPromise()
+      .then(response => {
+        return Promise.resolve(response.json());
+      })
+      .catch(response => {
+        console.log(response)
+      })
   }
 
   getActivity(){
@@ -85,6 +99,17 @@ export class ShoppingService {
       .catch(err => console.log(err));
   }
 
+  getHotSearch(){
+    return this.http.get(`/api/shopping/v3/hot_search_words?latitude=${this.location.latitude}&longitude=${this.location.longitude}`)
+      .toPromise()
+      .then(response => {
+        return Promise.resolve(response.json());
+      })
+      .catch(response => {
+        throw new Error(JSON.stringify(response.json()))
+      })
+  }
+
   getRecommendSeller(params) {
     let activity='';
     if(params.activities){
@@ -92,7 +117,7 @@ export class ShoppingService {
         activity+='&support_ids[]='+id;
       })
     }
-    return this.http.get(`/api/shopping/restaurants?latitude=${this.location.latitude}&longitude=${this.location.longitude}&offset=${params.offset||0}&limit=20&extras[]=activities&keyword=&restaurant_category_id=&restaurant_category_ids[]=${params.categoryId||''}&order_by=${params.orderBy||''}&delivery_mode[]=${params.deliveryMode||''}${activity}`)
+    return this.http.get(`/api/shopping/restaurants${params.search?'/search':''}?latitude=${this.location.latitude}&longitude=${this.location.longitude}&offset=${params.offset||0}&limit=20&extras[]=activities&keyword=${params.keyword||''}&search_item_type=${params.searchType||2}&restaurant_category_id=&restaurant_category_ids[]=${params.categoryId||''}&order_by=${params.orderBy||''}&delivery_mode[]=${params.deliveryMode||''}${activity}`)
       .toPromise()
       .then(response => response.json())
       .catch(err => console.log(err));

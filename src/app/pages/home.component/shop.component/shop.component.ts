@@ -22,6 +22,8 @@ export class ShopComponent implements OnInit,AfterViewChecked,OnDestroy{
   content='menu';
   hideNav=true;//隐藏Nav 通过路由读取
   sellerDetail:any;
+  ratings;
+  tags;
   menu:any;
   foodItem;
   contentH=window.innerHeight-260;
@@ -29,6 +31,8 @@ export class ShopComponent implements OnInit,AfterViewChecked,OnDestroy{
   cost=0;
   count=0;
   remain=9999;
+  offset=0;
+  tagName='';
 
   ngOnInit(): void {
     this.shoppingService.shoppingCart$.subscribe( (shoppingCart:Array<any>) => {
@@ -53,6 +57,14 @@ export class ShopComponent implements OnInit,AfterViewChecked,OnDestroy{
       });
   }
 
+  loadMoreComments=() => {
+    this.offset+=10;
+    this.shoppingService.getRatings(this.offset,this.tagName)
+      .then(response => {
+        Array.prototype.push.apply(this.ratings,response);
+      })
+  }
+
   ngAfterViewChecked(){
     this.foodItem=document.getElementsByClassName('food-item')[0];
   }
@@ -60,6 +72,22 @@ export class ShopComponent implements OnInit,AfterViewChecked,OnDestroy{
   ngOnDestroy(){
     if(this.sellerDetail){
       this.shoppingService.setCartHistory(this.menu);
+    }
+  }
+
+  getRating(){
+      this.shoppingService.getRatings(this.offset,this.tagName)
+        .then(response => {
+          this.ratings=response;
+        });
+  }
+
+  getTags(){
+    if(!this.tags){
+      this.shoppingService.getTags()
+        .then(response => {
+          this.tags=response;
+        })
     }
   }
 

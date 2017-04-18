@@ -3,6 +3,11 @@ import {Http} from "@angular/http";
 
 import 'rxjs/add/operator/toPromise';
 
+export const ERRORS={
+  CAPTCHA_NONE_ERROR:'CAPTCHA_NONE_ERROR',
+  AUTH_FAILED:'AUTH_FAILED',
+  USER_AUTH_FAIL:'USER_AUTH_FAIL'
+}
 
 @Injectable()
 export class UserService{
@@ -15,6 +20,7 @@ export class UserService{
   userProfile:any;
 
   isLogined() {
+    console.log(sessionStorage.getItem('userId'))
     // if(sessionStorage.getItem('userId')){
     //   return true;
     // }else{
@@ -45,12 +51,7 @@ export class UserService{
         return Promise.resolve(resp);
       })
       .catch(response => {
-        let res=response.json();
-        if(res.name=='CAPTCHA_NONE_ERROR'){
-          throw new Error(res.name);
-        }else{
-          throw new Error(res.message);
-        }
+        throw new Error(JSON.stringify(response.json()));
       });
 
   }
@@ -63,10 +64,10 @@ export class UserService{
     })
       .toPromise()
       .then(response => {
-        sessionStorage.setItem('userId',response.json().user_id)
+        localStorage.setItem('userId',response.json().user_id)
       })
       .catch(response => {
-        throw new Error(response.json().message);
+        throw new Error(JSON.stringify(response.json()));
       })
 
   }
@@ -79,11 +80,10 @@ export class UserService{
       })
       .toPromise()
       .then(response => {
-        sessionStorage.setItem('userId',response.json().user_id);
-        // document.cookie='USERID='+response.json().user_id;
+        localStorage.setItem('userId',response.json().user_id);
       })
       .catch(response => {
-        throw new Error(response.json().message)
+        throw new Error(JSON.stringify(response.json()));
       })
   }
 
@@ -100,25 +100,28 @@ export class UserService{
   }
 
   requestOrders(){
-    this.http.get(`/api/bos/v2/users/${sessionStorage.getItem('userId')}/orders?limit=10&offset=0`)
-    return this.http.get(`/api/bos/v2/users/${this.userProfile.user_id}/orders?limit=10&offset=0`)
+    if(!localStorage.getItem('userId')){
+      throw new Error();
+    }else{
+      return this.http.get(`/api/bos/v2/users/${localStorage.getItem('userId')}/orders?limit=10&offset=0`)
+        .toPromise()
+        .then(response => {
+          return Promise.resolve(response.json());
+        })
+        .catch(response => {
+          throw new Error(JSON.stringify(response.json()));
+        })
+    }
+  }
+
+  getUserProfile(){
+    return this.http.get(`/api/eus/v1/users/${sessionStorage.getItem('userId')}`)
       .toPromise()
       .then(response => {
         return Promise.resolve(response.json());
       })
       .catch(response => {
-        throw new Error(response.json().message);
-      })
-  }
-
-  getUserProfile(){
-    this.http.get(`/api/eus/v1/users/${sessionStorage.getItem('userId')}`)
-      .toPromise()
-      .then(response => {
-        return response.json();
-      })
-      .catch(response => {
-
+        throw new Error(JSON.stringify(response.json()));
       })
   }
 }

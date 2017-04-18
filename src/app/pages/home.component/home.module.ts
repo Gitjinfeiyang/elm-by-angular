@@ -18,6 +18,8 @@ import {AddToCartComponent} from "../../components/add-to-cart/add-to-cart.compo
 import { CategoryComponent } from './category.component/category.component';
 import {ConditionsComponent} from "../../components/conditions.component/conditions.component";
 import { SearchComponent } from './search.component/search.component';
+import {ScrollLoadDirective} from "../../scrollLoad.directive";
+import { OrderComponent } from './order.component/order.component';
 
 @NgModule({
   imports:[
@@ -53,6 +55,10 @@ import { SearchComponent } from './search.component/search.component';
             component:SearchComponent
           },
           {
+            path:'order',
+            component:OrderComponent
+          },
+          {
             path:'shop/:id',
             component:ShopComponent
           },
@@ -78,7 +84,8 @@ import { SearchComponent } from './search.component/search.component';
     AddToCartComponent,
     CategoryComponent,
     ConditionsComponent,
-    SearchComponent
+    SearchComponent,
+    OrderComponent,
   ],
   exports:[
   ],

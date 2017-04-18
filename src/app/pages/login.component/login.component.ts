@@ -1,5 +1,5 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
-import {UserService} from "../../service/user-service";
+import {UserService,ERRORS} from "../../service/user-service";
 import {Location} from "@angular/common";
 import {routerAnimation} from "../../animations";
 
@@ -46,14 +46,7 @@ export class LoginComponent implements OnInit {
         this.changeContent();
       })
       .catch(err => {
-        if(err.message=='CAPTCHA_NONE_ERROR'){
-          this.userService.requestCaptchaCode()
-            .then(response => {
-              this.captcha=response.code;
-            })
-        }else{
-          this.notice=err.message;
-        }
+          this.captchaInput(err);
       })
   }
 
@@ -79,7 +72,7 @@ export class LoginComponent implements OnInit {
         window.history.back();
       })
       .catch(err => {
-        this.notice=err.message;
+
       })
   }
 
@@ -89,16 +82,29 @@ export class LoginComponent implements OnInit {
         window.history.back();
       })
       .catch(err => {
+        this.captchaInput(err);
+      })
+  }
+
+  captchaInput(err){
+    let error=JSON.parse(err.message);
+    switch (error.name){
+      case ERRORS.CAPTCHA_NONE_ERROR:
         this.loginFail=true;
-        this.notice=err.message;
         this.userService.requestCaptchaCode()
           .then(response => {
             this.captcha=response.code;
           })
           .catch(err => {
             this.notice=err.message;
-          })
-      })
+          });
+        break;
+      case ERRORS.USER_AUTH_FAIL:
+        this.notice=error.message;
+        break;
+      default:
+        this.notice=error.message;
+    }
   }
 
 }

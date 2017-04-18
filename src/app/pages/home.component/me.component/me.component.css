@@ -9,7 +9,7 @@
 
 .user-property{display: flex; padding-top: 10px;}
 .user-property>div{flex: 1;}
-.user-property>div>p{line-height:30px; text-align: center; font-size: 12px; color:#333;}
+.user-property>div>p{line-height:30px; text-align: center; font-size: 14px; color:#333;}
 .user-property strong{font-size: 20px; font-weight: bold;}
 .balance strong{color:rgb(255, 153, 0);}
 .discount strong{color:rgb(255, 95, 62);}
