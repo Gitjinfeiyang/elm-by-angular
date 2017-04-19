@@ -76,11 +76,5 @@ export class HomeComponent implements OnInit,AfterViewChecked {
     }});
   }
 
-  toSearch(val){
-    this.router.navigate(['search'],{relativeTo:this.route.parent,queryParams:{
-      keyword:val
-    }})
-  }
-
 
 }

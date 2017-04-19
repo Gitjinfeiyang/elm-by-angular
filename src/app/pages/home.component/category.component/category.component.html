@@ -3,7 +3,9 @@
     <div class="nav-left iconfont">&#xe697;返回</div>
     <div class="nav-middle" *ngIf="title">{{title}}</div>
   </head-nav>
-  <conditions (paramsChanged)="paramsChangedHandle($event)" [title]="title"></conditions>
-  <shopping-list *ngIf="categoryList" [sellers]="categoryList"></shopping-list>
+    <conditions (paramsChanged)="paramsChangedHandle($event)" [title]="title"></conditions>
+  <div class="list-wrapper">
+    <shopping-list *ngIf="categoryList" [sellers]="categoryList"></shopping-list>
+  </div>
 </div>
 <loading *ngIf="!categoryList"></loading>

@@ -1,5 +1,18 @@
 <div class="add-buttons-wrapper">
-  <span class="subtract-button iconfont" (click)="subtract()" *ngIf="food.count">&#xe6fe;</span>
-  <span class="food-count" *ngIf="food.count">{{food.count}}</span>
-  <span class="add-button iconfont" (click)="add()">&#xe6b9;</span>
+  <span class="subtract-button iconfont" (click)="subtract(food.specfoods[0])" *ngIf="food?.specfoods&&food?.specfoods[0]?.count>0">&#xe6fe;</span>
+  <span class="food-count" *ngIf="food?.specfoods&&food?.specfoods[0]?.count>0">{{food?.specfoods[0]?.count}}</span>
+  <span class="add-button iconfont" *ngIf="food?.specfoods?.length==1" (click)="add(food.specfoods[0])">&#xe6b9;</span>
+  <span class="choose-food-button" *ngIf="food?.specfoods?.length>1" #chooseFood (click)="show()">选规格</span>
+  <div class="choose-food-panel-wrapper" *ngIf="showPanel">
+    <div class="choose-food-panel">
+      <p class="choose-food-title">{{food.name}}</p>
+      <ul class="choose-list">
+        <li class="choose-item" *ngFor="let item of food.specfoods" (click)="choose(item)">{{item.name}}</li>
+      </ul>
+      <div class="choose-button-wrapper">
+        <h3 class="price">{{chooseList.price||''}}</h3>
+        <input type="button" value="加入购物车" />
+      </div>
+    </div>
+  </div>
 </div>

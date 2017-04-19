@@ -1,6 +1,6 @@
 import {Component, OnInit, Output, EventEmitter, AfterViewChecked, HostBinding, OnDestroy} from "@angular/core";
 import {ShoppingService,getImgPath} from "../../../service/shopping-service";
-import {Params, ActivatedRoute} from "@angular/router";
+import {Params, ActivatedRoute, Router} from "@angular/router";
 import {routerAnimation, fadeOut} from "../../../animations";
 
 
@@ -13,7 +13,8 @@ import {routerAnimation, fadeOut} from "../../../animations";
 export class ShopComponent implements OnInit,AfterViewChecked,OnDestroy{
   constructor(
     private shoppingService:ShoppingService,
-    private route:ActivatedRoute
+    private route:ActivatedRoute,
+    private router:Router
   ){}
 
   @HostBinding('@routeAnimation') routeAnimation=true;
@@ -41,7 +42,7 @@ export class ShopComponent implements OnInit,AfterViewChecked,OnDestroy{
       this.count=0;
       for(let i=0; i<this.shoppingCart.length; i++){
         this.count+=this.shoppingCart[i].count;
-        this.cost+=this.shoppingCart[i].count*this.shoppingCart[i].specfoods[0].price;
+        this.cost+=this.shoppingCart[i].count*this.shoppingCart[i].price;
       }
     });
 
@@ -55,6 +56,11 @@ export class ShopComponent implements OnInit,AfterViewChecked,OnDestroy{
             this.shoppingService.refreshCart();
           })
       });
+  }
+
+  checkout(){
+    this.router.navigate(['checkout'],{relativeTo:this.route.parent})
+    sessionStorage.setItem('shoppingcart',JSON.stringify(this.shoppingCart));
   }
 
   loadMoreComments=() => {

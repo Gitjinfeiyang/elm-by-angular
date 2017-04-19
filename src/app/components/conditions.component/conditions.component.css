@@ -1,4 +1,4 @@
-.conditions-wrapper{position:sticky; background:#fff; top:0; left:0; width:100%; z-index: 100;}
+.conditions-wrapper{background:#fff;width:100%; z-index: 100; position:sticky; top:0; left:0;}
 .select-wrapper{height:40px; line-height:40px; display: flex; border-bottom: 1px solid #e4e4e4;}
 .conditions-left,.conditions-middle,.conditions-right{flex:1; border-right: 1px solid #e4e4e4; text-align: center;}
 .conditions-right{border-right: none;}

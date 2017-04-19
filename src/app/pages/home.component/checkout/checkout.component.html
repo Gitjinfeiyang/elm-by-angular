@@ -1,0 +1,107 @@
+<div class="head-wrapper">
+  <head-nav>
+    <div class="nav-left"><span class="iconfont">&#xe697;</span></div>
+    <div class="nav-middle">确认订单</div>
+  </head-nav>
+</div>
+<div class="content-wrapper" [ngSwitch]="show">
+  <div class="checkout-wrapper" *ngSwitchCase="'check'">
+    <div class="address-wrapper">
+      <div class="no-address" *ngIf="!response?.current_address||response?.current_address==null" (click)="getAddress();show='choose'">
+        <span class="text">请选择一个地址</span>
+      </div>
+      <div class="address" *ngIf="response?.current_address&&response?.current_address!=null;">
+        <div class="icon"><span class="iconfont">&#xe715;</span></div>
+        <div class="address-and-phone">
+          <p>{{response?.current_address.name+response?.current_address.sex==1?'先生':'女士'}}
+            {{response?.current_address.phone}}</p>
+          <p class="address-text">{{response?.current_address.address+' '+response?.current_address.address_detail}}</p>
+        </div>
+      </div>
+      <div class="icon">
+        <span class="iconfont">&#xe6a7;</span>
+      </div>
+    </div>
+    <div class="delivery-time-wrapper" *ngIf="response">
+      <h3 class="delivery-time-title">送达时间</h3>
+      <div class="delivery-select-wrapper">
+        <div class="delivery-time">尽快送达|预计{{response.delivery_reach_time}}<span class="iconfont">&#xe6a7;</span></div>
+        <div class="delivery-method"><span class="method">蜂鸟快送</span><span class="iconfont">&#xe6a7;</span></div>
+      </div>
+    </div>
+    <div class="pay-method-wrapper" *ngIf="response">
+      <div class="pay-method">
+        <p class="left">支付方式</p>
+        <p class="right">在线支付 <span class="iconfont">&#xe6a7;</span></p>
+      </div>
+      <div class="discount">
+        <p class="left">红包</p>
+        <p class="right">暂时只在饿了么app中支持 <span class="iconfont">&#xe6a7;</span></p>
+      </div>
+    </div>
+    <div class="food-list-wrapper" *ngIf="response">
+      <h2><span><img [src]="'https://fuss10.elemecdn.com'+response.cart.restaurant_info.image_path"/></span>
+        {{response.cart.restaurant_info.name}}</h2>
+      <ul>
+        <li class="food-item" *ngFor="let food of response.cart.group[0]">
+          <p class="flex-left">{{food.name}}</p>
+          <p class="flex-middle">x{{food.quantity}}</p>
+          <p class="flex-right">￥{{food.price}}</p>
+        </li>
+      </ul>
+      <ul>
+        <li class="extra" *ngFor="let item of response.cart.extra">
+          <div class="extra-item">
+            <p class="flex-left">{{item.name}}</p>
+            <p class="flex-right">￥{{item.price}}</p>
+          </div>
+          <div class="extra-description"><span class="icon"
+                                               [style.background]="'#'+item.icon.color">{{item.icon.name}}</span>{{item.description}}
+          </div>
+        </li>
+      </ul>
+      <div class="total">
+        <p class="flex-left">订单 ￥{{response.cart.original_total}}</p>
+        <p class="flex-right">待支付 ￥{{response.cart.original_total}}</p>
+      </div>
+    </div>
+    <div class="order-note" *ngIf="response">
+      <div class="note">
+        <p class="flex-left">订单备注</p>
+        <p class="flex-right">ddd <span class="iconfont">&#xe6a7;</span></p>
+      </div>
+      <div class="invoice">
+        <p class="flex-left">发票抬头</p>
+        <p class="flex-right">{{response.invoice.status_text}} <span class="iconfont">&#xe6a7;</span></p>
+      </div>
+    </div>
+    <div class="submit-button-bar">
+      <div class="text">待支付 ￥{{response?.cart.original_total}}</div>
+      <div class="submit-button">提交订单</div>
+    </div>
+  </div>
+
+  <div class="choose-address-wrapper" *ngSwitchCase="'choose'" >
+    <ul class="available">
+      <li *ngFor="let a of aAddress">
+        <div class="address-and-phone">
+          <p>{{a.name+(a.sex==1?'先生':'女士')}} {{a.phone}}</p>
+          <p class="address-text">{{a.address+' '+a.address_detail}}</p>
+        </div>
+        <div class="edit-icon"><span class="iconfont">&#xe69e;</span></div>
+      </li>
+    </ul>
+    <h3>以下地址超出配送范围</h3>
+    <ul class="not-available">
+      <li *ngFor="let a of dAddress">
+        <div class="address-and-phone">
+          <p>{{a.name+(a.sex==1?'先生':'女士')}} {{a.phone}}</p>
+          <p class="address-text">{{a.address+' '+a.address_detail}}</p>
+        </div>
+        <div class="edit-icon"><span class="iconfont">&#xe69e;</span></div>
+      </li>
+    </ul>
+  </div>
+
+</div>
+

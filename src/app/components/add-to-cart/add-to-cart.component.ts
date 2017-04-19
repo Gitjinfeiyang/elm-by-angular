@@ -12,20 +12,25 @@ export class AddToCartComponent{
 
   @Input() food;
     index;//记录在shoppingcart中的位置
+  showPanel=false;
 
-  add(){
-    if((!this.food.count)||this.food.count<=0){
-      this.food.count=1;
-      this.index=this.shoppingService.addToCart(this.food);
+  show(){
+    this.showPanel=!this.showPanel;
+  }
+
+  add(food){
+    if((!food.count)||food.count<=0){
+      food.count=1;
+      this.index=this.shoppingService.addToCart(food);
     }else{
-      this.food.count+=1;
+      food.count+=1;
     }
     this.shoppingService.refreshCart();
   }
 
-  subtract(){
-    this.food.count-=1;
-    if(this.food.count<=0){
+  subtract(food){
+    food.count-=1;
+    if(food.count<=0){
       this.shoppingService.subtractCart(this.index);
     }
     this.shoppingService.refreshCart();

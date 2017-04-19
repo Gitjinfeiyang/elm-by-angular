@@ -20,6 +20,7 @@ import {ConditionsComponent} from "../../components/conditions.component/conditi
 import { SearchComponent } from './search.component/search.component';
 import {ScrollLoadDirective} from "../../scrollLoad.directive";
 import { OrderComponent } from './order.component/order.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   imports:[
@@ -65,6 +66,10 @@ import { OrderComponent } from './order.component/order.component';
           {
             path:'category',
             component:CategoryComponent
+          },
+          {
+            path:'checkout',
+            component:CheckoutComponent
           }
         ]
       }
@@ -86,6 +91,7 @@ import { OrderComponent } from './order.component/order.component';
     ConditionsComponent,
     SearchComponent,
     OrderComponent,
+    CheckoutComponent,
   ],
   exports:[
   ],

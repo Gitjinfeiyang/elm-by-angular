@@ -1,7 +1,7 @@
 <head-nav>
   <div class="nav-left"><span class="iconfont">&#xe697;</span>返回</div>
   <div class="nav-middle">我的</div>
-  <div class="nav-right" (click)="logout()">退出登录</div>
+  <div class="nav-right"></div>
 </head-nav>
 <div class="user-profile-wrapper">
   <div class="avatar">
@@ -38,4 +38,5 @@
 <ul class="other-information">
   <li class="item"><span class="iconfont" style="color:rgb(255, 95, 62);">&#xe6a3;</span>服务中心</li>
   <li class="item"><span class="iconfont" style="color:rgb(106, 194, 11);">&#xe714;</span>下载饿了么</li>
+  <li class="item" (click)="checkOut()">test checkout</li>
 </ul>

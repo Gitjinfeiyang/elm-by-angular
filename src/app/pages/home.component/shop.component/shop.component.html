@@ -44,8 +44,12 @@
                   <h4>{{items.name}}</h4>
                   <p>月售{{items.month_sales}}份 好评率{{items.satisfy_rate}}%</p>
                   <div class="buy-wrapper">
-                    <div class="price">{{items.specfoods[0].price}}元</div>
-                    <div class="add-to-cart-wrapper"><add-to-cart [food]="items"></add-to-cart></div>
+                    <div class="old-price" *ngIf="items.specfoods.length==1&&items.specfoods[0].original_price">{{items.specfoods[0].original_price}}</div>
+                    <div class="price" *ngIf="items.specfoods.length==1">{{items.specfoods[0].price}}元</div>
+                    <div class="price" *ngIf="items.specfoods.length>1">{{items.specfoods[0].price}}元起</div>
+                    <div class="add-to-cart-wrapper">
+                      <add-to-cart [food]="items"></add-to-cart>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -117,7 +121,7 @@
           还需配送费￥{{sellerDetail?sellerDetail.float_delivery_fee:0}}
         </div>
       </div>
-      <div class="pay-button" [class.allow-pay]="cost>0">
+      <div class="pay-button" [class.allow-pay]="cost>sellerDetail?.float_minimum_order_amount" (click)="checkout()">
         {{sellerDetail?payButtonText(sellerDetail):'马上下单'}}
       </div>
       <div class="cart-detail" [class.cart-detail-show]="cartDetail.show&&cost>0" #cartDetail>
@@ -129,9 +133,9 @@
           <ul>
             <li class="cart-item" *ngFor="let food of shoppingCart">
               <h3 class="food-name">{{food.name}}</h3>
-              <h3 class="food-price">￥{{food.specfoods[0].price}}</h3>
+              <h3 class="food-price">￥{{food.price}}</h3>
               <div class="add-to-cart-wrapper">
-                <add-to-cart [food]="food"></add-to-cart>
+                <add-to-cart [food]="{specfoods:[food]}"></add-to-cart>
               </div>
             </li>
           </ul>

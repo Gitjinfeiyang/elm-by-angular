@@ -1,9 +1,9 @@
-.nav-middle input{width:100%;line-height:30px; border-radius: 20px; background:rgba(0,0,0,0.1); text-indent: 10px;
+.nav-middle input{width:100%;line-height:40px; border-radius: 20px; background:rgba(0,0,0,0.1); text-indent: 10px;
   font-size: 14px; color:#fff;}
 .hot-search{padding:30px 10px;}
 .hot-search .iconfont{color:#ff461d;}
 .item-wrapper{padding:10px 20px;}
-.item-wrapper .hot-search-item{display: inline-block; padding:3px 6px; margin:0 4px 4px 0; background:#ebf5ff; color:#666;}
+.item-wrapper .hot-search-item{display: inline-block; padding:3px 6px; margin:0 4px 4px 0; background:#ebf5ff;}
 
 .popup-title{color:#2395ff;}
 .popup-content{padding:30px 10px; border-bottom: 1px solid #f5f5f5;}

@@ -1,4 +1,4 @@
-
+.city-wrapper{}
 .title{font-size: 12px; color:#666; font-weight: 100; padding:0 10px;}
 .city-box{display: inline-block; width:25%; line-height:36px; border-top:1px solid #ececec; border-right: 1px solid #ececec;
   text-align:center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; vertical-align: bottom;}

@@ -23,10 +23,10 @@ export class UserService{
     return this.http.get('/api/eus/v1/current_user?info_raw={}')
       .toPromise()
       .then(response => {
-        localStorage.setItem('userId',response.json());
+        return Promise.resolve(response.json())
       })
       .catch(response =>{
-        throw new Error();
+
       })
   }
 
@@ -58,8 +58,7 @@ export class UserService{
     })
       .toPromise()
       .then(response => {
-        localStorage.setItem('userId',response.json().user_id);
-        this.logined=true;
+        localStorage.setItem('userId',response.json().user_id)
       })
       .catch(response => {
         throw new Error(JSON.stringify(response.json()));
@@ -76,7 +75,6 @@ export class UserService{
       .toPromise()
       .then(response => {
         localStorage.setItem('userId',response.json().user_id);
-        this.logined=true;
       })
       .catch(response => {
         throw new Error(JSON.stringify(response.json()));
