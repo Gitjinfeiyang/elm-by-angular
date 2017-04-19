@@ -4,10 +4,10 @@
     <div class="nav-middle"><input type="text" [(ngModel)]="keyword" placeholder="请输入搜索关键字" (keyup.enter)="search(true)" /></div>
   </head-nav>
   <conditions *ngIf="restaurants?.length>0" [title]="'美食'" (paramsChanged)="paramschangedHandler($event)"></conditions>
-  <div class="hot-search" *ngIf="!restaurants?.length>0&&hotSearch">
+  <div class="hot-search" *ngIf="(!restaurants?.length>0)&&hotSearch">
     <h3><span class="iconfont">&#xe66c;</span> 热门搜索</h3>
     <ul class="item-wrapper">
-      <li class="hot-search-item" *ngFor="let item of hotSearch" (click)="keyword=item.word;getSearchResult();">{{item.word}}</li>
+      <li class="hot-search-item" *ngFor="let item of hotSearch" (click)="keyword=item.word;search(true)">{{item.word}}</li>
     </ul>
   </div>
   <shopping-list *ngIf="restaurants?.length>0" [sellers]="restaurants"></shopping-list>

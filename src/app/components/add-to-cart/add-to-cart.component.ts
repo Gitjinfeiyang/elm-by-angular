@@ -13,6 +13,11 @@ export class AddToCartComponent{
   @Input() food;
     index;//记录在shoppingcart中的位置
   showPanel=false;
+  tempFood=[];
+
+  choose(item){
+
+  }
 
   show(){
     this.showPanel=!this.showPanel;

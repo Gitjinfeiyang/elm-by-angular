@@ -7,7 +7,8 @@
     <div class="choose-food-panel">
       <p class="choose-food-title">{{food.name}}</p>
       <ul class="choose-list">
-        <li class="choose-item" *ngFor="let item of food.specfoods" (click)="choose(item)">{{item.name}}</li>
+        <li class="choose-item" *ngFor="let item of food.specfoods" [style.border]="'1px solid #'+item.count?'3190e8':'#4e4e4'"
+            >{{item.name}}</li>
       </ul>
       <div class="choose-button-wrapper">
         <h3 class="price">{{chooseList.price||''}}</h3>

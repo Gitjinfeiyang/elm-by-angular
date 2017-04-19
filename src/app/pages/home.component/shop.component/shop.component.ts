@@ -17,8 +17,8 @@ export class ShopComponent implements OnInit,AfterViewChecked,OnDestroy{
     private router:Router
   ){}
 
-  @HostBinding('@routeAnimation') routeAnimation=true;
-  @HostBinding('style.display') display='block';
+  // @HostBinding('@routeAnimation') routeAnimation=true;
+  // @HostBinding('style.display') display='block';
 
   content='menu';
   hideNav=true;//隐藏Nav 通过路由读取

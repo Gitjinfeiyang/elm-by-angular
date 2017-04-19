@@ -46,6 +46,7 @@ export class SearchComponent implements OnInit {
     }else{
       this.keyword='';
       window.history.replaceState('','',window.location.pathname);
+      // this.router.navigate([],{queryParams:{}})
       this.empty=false;
     }
   }

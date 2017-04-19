@@ -82,25 +82,28 @@
   </div>
 
   <div class="choose-address-wrapper" *ngSwitchCase="'choose'" >
-    <ul class="available">
+    <ul class="available" *ngIf="aAddress.length>0">
       <li *ngFor="let a of aAddress">
         <div class="address-and-phone">
           <p>{{a.name+(a.sex==1?'先生':'女士')}} {{a.phone}}</p>
           <p class="address-text">{{a.address+' '+a.address_detail}}</p>
         </div>
-        <div class="edit-icon"><span class="iconfont">&#xe69e;</span></div>
+        <div class="icon"><span class="iconfont">&#xe69e;</span></div>
       </li>
     </ul>
-    <h3>以下地址超出配送范围</h3>
+    <h5>以下地址超出配送范围</h5>
     <ul class="not-available">
       <li *ngFor="let a of dAddress">
         <div class="address-and-phone">
           <p>{{a.name+(a.sex==1?'先生':'女士')}} {{a.phone}}</p>
           <p class="address-text">{{a.address+' '+a.address_detail}}</p>
         </div>
-        <div class="edit-icon"><span class="iconfont">&#xe69e;</span></div>
+        <div class="icon"><span class="iconfont">&#xe69e;</span></div>
       </li>
     </ul>
+    <div class="add-new-address">
+      <span>添加新地址</span> <span class="iconfont"> &#xe69e;</span>
+    </div>
   </div>
 
 </div>
