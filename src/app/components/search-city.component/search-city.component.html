@@ -1,0 +1,23 @@
+<div class="search-bar">
+  <input type="text" class="search-text" [(ngModel)]="keyword" placeholder="请输入学校、商务楼、地址"/>
+  <input type="button" value="搜索" class="search-button" (click)="search(keyword)"/>
+</div>
+<div class="search-result" *ngIf="searchResult">
+  <p *ngIf="searchResult.length<=0">搜索结果为空</p>
+  <ul>
+    <li *ngFor="let result of searchResult" class="search-item" (click)="goTo(result);setSearchHistory(result);">
+      <h4>{{result.name}}</h4>
+      <p>{{result.address}}</p>
+    </li>
+  </ul>
+</div>
+<div class="search-history" *ngIf="searchHistory&&!searchResult">
+  <h5>搜索记录</h5>
+  <h6 (click)="clearSearchHistory()"><a>清除记录</a></h6>
+  <ul>
+    <li *ngFor="let result of searchHistory" class="search-item" (click)="goTo(result);">
+      <h4>{{result.name}}</h4>
+      <p>{{result.address}}</p>
+    </li>
+  </ul>
+</div>

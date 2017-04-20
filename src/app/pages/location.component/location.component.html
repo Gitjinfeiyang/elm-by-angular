@@ -1,29 +1,8 @@
 <div class="location-search">
-  <head-nav>
+  <head-nav *ngIf="!getCity">
     <div class="nav-left"><span class="iconfont">&#xe697;</span><span>返回</span></div>
     <div class="nav-middle" *ngIf="city">{{city.name}}</div>
     <div class="nav-right" [routerLink]="['/city']">切换城市</div>
   </head-nav>
-  <div class="search-bar">
-    <input type="text" class="search-text" [(ngModel)]="keyword" placeholder="请输入学校、商务楼、地址"/>
-    <input type="button" value="搜索" class="search-button" (click)="search()"/>
-  </div>
-  <div class="search-result" *ngIf="searchResult">
-    <ul>
-      <li *ngFor="let result of searchResult" class="search-item" (click)="toHomePage(result);setSearchHistory(result);">
-        <h4>{{result.name}}</h4>
-        <p>{{result.address}}</p>
-      </li>
-    </ul>
-  </div>
-  <div class="search-history" *ngIf="searchHistory&&!searchResult">
-    <h5>搜索记录</h5>
-    <h6 (click)="clearSearchHistory()"><a>清除记录</a></h6>
-    <ul>
-      <li *ngFor="let result of searchHistory" class="search-item" (click)="toHomePage(result);">
-        <h4>{{result.name}}</h4>
-        <p>{{result.address}}</p>
-      </li>
-    </ul>
-  </div>
+  <search-city [search]="search" [goTo]="toHomePage" [searchResult]="searchResult"></search-city>
 </div>

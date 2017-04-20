@@ -21,6 +21,8 @@ import { SearchComponent } from './search.component/search.component';
 import {ScrollLoadDirective} from "../../scrollLoad.directive";
 import { OrderComponent } from './order.component/order.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import {CanDeactivateGuard} from "./checkout/canDeactivateGuard";
+import {LocationComponent} from "../location.component/location.component";
 
 @NgModule({
   imports:[
@@ -69,7 +71,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
           },
           {
             path:'checkout',
-            component:CheckoutComponent
+            component:CheckoutComponent,
+            canDeactivate:[CanDeactivateGuard]
           }
         ]
       }
@@ -96,9 +99,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
   exports:[
   ],
   providers:[
-    // CityService,
     ShoppingService,
-    // UserService
+    CanDeactivateGuard
   ],
   bootstrap:[]
 })

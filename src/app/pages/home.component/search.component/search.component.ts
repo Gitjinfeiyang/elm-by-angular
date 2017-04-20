@@ -25,6 +25,7 @@ export class SearchComponent implements OnInit {
   params:any={};
   keyword;
   empty=false;
+  searching=false;
 
   ngOnInit() {
     this.shoppingService.getHotSearch()
@@ -39,6 +40,7 @@ export class SearchComponent implements OnInit {
   }
 
   search(b){
+    this.searching=true;
     if(b){
       this.router.navigate([],{queryParams:{
         keyword:this.keyword
@@ -65,6 +67,9 @@ export class SearchComponent implements OnInit {
                 this.empty=true;
               }
             })
+          this.searching=false;
+        }else{
+          this.restaurants=[];
         }
       });
   }

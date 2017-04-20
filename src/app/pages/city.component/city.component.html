@@ -9,7 +9,10 @@
   <div class="cities">
     <div class="location" *ngIf="location">
       <h3 class="title">当前定位城市:</h3>
-      <p>{{location.name}}</p>
+      <div class="gps-location">
+        <p class="gps-name">{{location.name}}</p>
+        <p class="gps-button"><input type="button" value="点击重新获取" /></p>
+      </div>
     </div>
     <div class="hot-cities" *ngIf="hotCities">
       <h3 class="title">热门城市:</h3>

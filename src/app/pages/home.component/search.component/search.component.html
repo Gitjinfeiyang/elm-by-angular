@@ -2,6 +2,7 @@
   <head-nav>
     <div class="nav-left"><span class="iconfont">&#xe697;</span></div>
     <div class="nav-middle"><input type="text" [(ngModel)]="keyword" placeholder="请输入搜索关键字" (keyup.enter)="search(true)" /></div>
+    <div class="nav-right" *ngIf="searching"><span class="iconfont">&#xe609;</span></div>
   </head-nav>
   <conditions *ngIf="restaurants?.length>0" [title]="'美食'" (paramsChanged)="paramschangedHandler($event)"></conditions>
   <div class="hot-search" *ngIf="(!restaurants?.length>0)&&hotSearch">

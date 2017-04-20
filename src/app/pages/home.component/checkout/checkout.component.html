@@ -1,19 +1,20 @@
 <div class="head-wrapper">
   <head-nav>
     <div class="nav-left"><span class="iconfont">&#xe697;</span></div>
-    <div class="nav-middle">确认订单</div>
+    <div class="nav-middle" *ngIf="headTitle">{{headTitle}}</div>
+    <div class="nav-right" *ngIf="headTitle==HEADTITLE.EDIT_ADDRESS||HEADTITLE.ADD_ADDRESS"><div>删除</div></div>
   </head-nav>
 </div>
-<div class="content-wrapper" [ngSwitch]="show">
-  <div class="checkout-wrapper" *ngSwitchCase="'check'">
+<div class="content-wrapper" [ngSwitch]="headTitle">
+  <div class="checkout-wrapper" *ngSwitchCase="HEADTITLE.CHECKOUT">
     <div class="address-wrapper">
-      <div class="no-address" *ngIf="!response?.current_address||response?.current_address==null" (click)="getAddress();show='choose'">
+      <div class="no-address" *ngIf="!response?.current_address||response?.current_address==null" (click)="getAddress();goTo(HEADTITLE.CHOOSE_ADDRESS)">
         <span class="text">请选择一个地址</span>
       </div>
       <div class="address" *ngIf="response?.current_address&&response?.current_address!=null;">
         <div class="icon"><span class="iconfont">&#xe715;</span></div>
         <div class="address-and-phone">
-          <p>{{response?.current_address.name+response?.current_address.sex==1?'先生':'女士'}}
+          <p>{{response?.current_address.name+(response?.current_address.sex==1?'先生':'女士')}}
             {{response?.current_address.phone}}</p>
           <p class="address-text">{{response?.current_address.address+' '+response?.current_address.address_detail}}</p>
         </div>
@@ -81,14 +82,14 @@
     </div>
   </div>
 
-  <div class="choose-address-wrapper" *ngSwitchCase="'choose'" >
+  <div class="choose-address-wrapper" *ngSwitchCase="HEADTITLE.CHOOSE_ADDRESS" >
     <ul class="available" *ngIf="aAddress.length>0">
-      <li *ngFor="let a of aAddress">
+      <li *ngFor="let a of aAddress" (click)="checkout()">
         <div class="address-and-phone">
           <p>{{a.name+(a.sex==1?'先生':'女士')}} {{a.phone}}</p>
           <p class="address-text">{{a.address+' '+a.address_detail}}</p>
         </div>
-        <div class="icon"><span class="iconfont">&#xe69e;</span></div>
+        <div class="icon" (click)="goTo(HEADTITLE.EDIT_ADDRESS);editAddress=a"><span class="iconfont">&#xe69e;</span></div>
       </li>
     </ul>
     <h5>以下地址超出配送范围</h5>
@@ -98,12 +99,55 @@
           <p>{{a.name+(a.sex==1?'先生':'女士')}} {{a.phone}}</p>
           <p class="address-text">{{a.address+' '+a.address_detail}}</p>
         </div>
-        <div class="icon"><span class="iconfont">&#xe69e;</span></div>
+        <div class="icon" (click)="goTo(HEADTITLE.EDIT_ADDRESS);editAddress=a;" ><span class="iconfont">&#xe69e;</span></div>
       </li>
     </ul>
-    <div class="add-new-address">
+    <div class="add-new-address" (click)="goTo(HEADTITLE.ADD_ADDRESS);">
       <span>添加新地址</span> <span class="iconfont"> &#xe69e;</span>
     </div>
+  </div>
+
+  <div class="edit-address-wrapper" *ngIf="headTitle==HEADTITLE.EDIT_ADDRESS||headTitle==HEADTITLE.ADD_ADDRESS">
+    <form #user="ngForm">
+      <div class="user-name-wrapper edit-area">
+        <div class="title-left">联系人</div>
+        <div class="input-area">
+          <input type="text" name="name" placeholder="请输入姓名" [(ngModel)]="editAddress.name" required/>
+          <div class="sex">
+            <label><input type="radio" name="sex" value="1"/>男士</label>
+            <label><input type="radio" name="sex" value="0" />女士</label>
+            <!--<span><span class="iconfont">&#xe6ad;</span>先生</span> <span><span class="iconfont">&#xe6ad;</span>女士</span>-->
+          </div>
+        </div>
+      </div>
+      <div class="phoneNum-wrapper edit-area">
+        <div class="title-left">联系电话</div>
+        <div class="input-area">
+          <input type="text" name="phone" placeholder="请输入手机号码" [(ngModel)]="editAddress.phone" required/>
+        </div>
+      </div>
+      <div class="address-input-area edit-area">
+        <div class="title-left">送餐地址</div>
+        <div class="input-area">
+          <div><input type="text" name="address" (click)="goTo(HEADTITLE.SEARCH_ADDRESS)" [(ngModel)]="editAddress.address" placeholder="选择地址" required/></div>
+          <input type="text" name="address_detail" placeholder="请输入详细地址" [(ngModel)]="editAddress.address_detail" required/>
+        </div>
+      </div>
+      <div class="tag-wrapper edit-area">
+        <div class="title-left">标签</div>
+        <div class="input-area">
+          <span class="tag-select"><span class="iconfont">&#xe6a7;</span></span>
+        </div>
+      </div>
+      <div class="save-button-wrapper edit-area">
+        <input type="button" value="保存" (click)="saveAddress()"/>
+      </div>
+    </form>
+
+  </div>
+
+  <div class="search-address-wrapper" *ngSwitchCase="HEADTITLE.SEARCH_ADDRESS">
+    <search-city [searchResult]="searchAddressResult" [search]="searchAddress" [goTo]="back"></search-city>
   </div>
 
 </div>

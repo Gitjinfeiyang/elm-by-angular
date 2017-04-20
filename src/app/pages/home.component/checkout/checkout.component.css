@@ -51,3 +51,22 @@
 .not-available{ background:#f9f9f9; color:#999;}
 .add-new-address{position:fixed; bottom:0; left:0; width:100%; height:50px; line-height: 50px; color:#3190e8;
   background:#fff; text-align: center;}
+
+
+.edit-address-wrapper{background:#fff;}
+.edit-area{display: flex; border-bottom: 1px solid #f5f5f5; line-height: 40px; padding:0 14px;}
+.title-left{flex:0 100px; flex-shrink: 0;}
+.input-area{flex:1;}
+.edit-area input[type='text'],.edit-area input[type='button']{line-height: inherit; width:100%;}
+.input-area input:focus{box-shadow: none;}
+.tag-wrapper .input-area{text-align: right;}
+.save-button-wrapper input{margin-top:30px; border-radius: 2px; background:#3190e8; color:#Fff; text-align: center;}
+
+
+.ng-untouched:not(form){border:none !important;}
+.ng-valid[required], .ng-valid.required  {
+  border-right: 3px solid #42A948; /* green */
+}
+.ng-invalid:not(form)  {
+  border-right: 3px solid #a94442; /* red */
+}

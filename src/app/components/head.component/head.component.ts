@@ -1,5 +1,5 @@
 import {Location} from "@angular/common";
-import {Component} from "@angular/core";
+import {Component, Input} from "@angular/core";
 @Component({
   selector:'head-nav',
   templateUrl:'head.component.html',
@@ -10,9 +10,14 @@ export class HeadComponent {
     private location:Location
   ){}
 
-  goBack() {
-    window.history.back();
+  @Input() goTo:Function;
 
+  goBack() {
+    if(this.goTo){
+      this.goTo()
+    }else{
+      window.history.back();
+    }
   }
 
 }

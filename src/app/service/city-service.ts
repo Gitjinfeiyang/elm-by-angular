@@ -10,10 +10,10 @@ import 'rxjs/add/operator/toPromise';
 export class CityService {
   constructor(private http:Http){}
 
-  getLocation():Promise<City>{
-    return this.http.get('/api/v1/cities?type=guess')
+  getLocation(position):Promise<City>{
+    return this.http.get(`/api/v1/cities?type=search&latitude=${position.latitude}&longitude=${position.longitude}`)
       .toPromise()
-      .then(response => response.json() as City)//得到的为对象数组，转化为City类型
+      .then(response => response.json())//得到的为对象数组，转化为City类型
       .catch(err => console.log(err));
   }
 
@@ -34,7 +34,9 @@ export class CityService {
   getCity(id:Number):Promise<City>{
     return this.http.get('/api/v1/cities/'+id)
       .toPromise()
-      .then(response => response.json())
+      .then(response => {
+        return Promise.resolve(response.json());
+      })
       .catch(err => console.log(err));
   }
 

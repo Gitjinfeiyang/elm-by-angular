@@ -1,4 +1,4 @@
-import {Component, OnInit, HostBinding} from "@angular/core";
+import {Component, OnInit, HostBinding, Input} from "@angular/core";
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import { Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
@@ -24,45 +24,28 @@ export class LocationComponent implements OnInit{
     private router:Router
   ){}
 
+
   city:City;
-  keyword:String;
   searchResult:any;
-  searchHistory=[];
 
   ngOnInit(){
-    this.route.params
-      .switchMap((params: Params) => this.cityService.getCity(+params['id']))
-      .subscribe(city => this.city = city);
-    this.getSearchHistory();
-  }
-
-  search(){
-    this.cityService.getSearchResult(this.city.id,this.keyword)
-      .then(result => this.searchResult=result);
-  }
-
-  toHomePage(location:any){
-    localStorage.setItem('geohash',location.geohash);
-    this.router.navigate(['/home',location.geohash]);
-  }
-
-  setSearchHistory(result){
-    this.cityService.setLocationSearchHistory(result);
-  }
-
-  getSearchHistory(){
-    if(this.cityService.getLocationSearchHistory()){
-      this.cityService.getLocationSearchHistory().forEach((e) => {
-        this.searchHistory.push(JSON.parse(e));
-      });
+    if(this.route.snapshot.params['id']){
+      this.cityService.getCity(+this.route.snapshot.params['id'])
+        .then(response =>this.city=response);
     }else{
-      this.searchHistory=[{name:'无记录'}]
+
     }
   }
 
-  clearSearchHistory(){
-    this.cityService.clearLocationSearchHistory();
-    this.searchHistory=[];
+  search=(keyword) => {
+      this.cityService.getSearchResult(this.city.id,keyword)
+        .then(result => this.searchResult=result);
   }
+
+  toHomePage=(location:any) => {
+      localStorage.setItem('geohash',location.geohash);
+      this.router.navigate(['/home',location.geohash]);
+  }
+
 
 }

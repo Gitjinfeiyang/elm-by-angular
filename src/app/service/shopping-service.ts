@@ -22,21 +22,35 @@ export class ShoppingService {
   sellerDetail;
   sellerId;
 
-  searchAddress(){
-    return this.http.get(`/api/v1/pois?type=nearby&keyword=ff`)
+  searchAddress(keyword){
+    return this.http.get(`/api/v1/pois?type=nearby&keyword=${keyword}`)
+      .toPromise()
+      .then(response => {
+        return Promise.resolve(response.json())
+      })
+      .catch(response => {
+        console.log(response.json())
+      })
   }
 
-  editAddress(id) {
-    return this.http.post(`/api/v1/users/145808345/addresses/${id}`, {
-      "name": "金飞扬",
-      "sex": 1,
-      "phone": "18756506650",
-      "phone_bk": "",
-      "address": "安徽农业大学",
-      "address_detail": "三宿舍126栋",
-      "poi_type": 0,
-      "geohash": "wtemk20bwyp"
+  editAddress(address) {//添加地址id填空字符串
+    return this.http.post(`/api/v1/users/145808345/addresses/${address.id||''}`, {
+      "name": address.name,
+      "sex": address.sex||'',
+      "phone": address.phone,
+      "phone_bk": address.phone_bk||'',
+      "address": address.address,
+      "address_detail": address.address_detail,
+      "poi_type": address.poi_type||0,
+      "geohash": address.geohash
     })
+      .toPromise()
+      .then(response => {
+        return Promise.resolve(response.json())
+      })
+      .catch(response => {
+        throw new Error(JSON.stringify(response.json()));
+      })
   }
 
   queryOrder() {
@@ -84,7 +98,7 @@ export class ShoppingService {
     });
     return this.http.post(`/api/v1/carts/checkout`, {
       "come_from": "web",
-      "geohash": localStorage.getItem('geohash'),
+      "geohash": options.geohash,
       "address_id": options.address_id || null,
       "deliver_time": options.deliver_time || null,
       "entities": entities,
