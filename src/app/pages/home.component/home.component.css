@@ -3,11 +3,12 @@
 .shopping-search{text-align: center; padding:20px 0;}
 .shopping-search input{width:80%; border:none; line-height: 30px; border-radius: 20px; text-indent: 20px; outline: none;}
 
-.category-wrapper{padding:10px;}
+.category-wrapper{padding:10px; background:#Fff;}
 .category-wrapper a{color:#666; text-decoration: none;}
 .category-box{display: inline-block; width:25%; text-align: center;}
 .category-icon{width:80%;}
 
-.recommend-sellers{padding-bottom: 60px;}
+.recommend-sellers{padding-bottom: 60px;margin-top: 20px; background:#fff;}
+.recommend-sellers .title{padding:10px;}
 
 

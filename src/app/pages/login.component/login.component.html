@@ -1,5 +1,6 @@
 <head-nav>
   <div class="nav-left"><span class="iconfont">&#xe697;</span><span>返回</span></div>
+  <div class="nav-middle">  <span *ngIf="logining" class="iconfont loading-tip">&#xe609;</span></div>
   <div class="nav-right" (click)="loginByPhoneNum=!loginByPhoneNum;captcha=null;loginFail=false;">{{loginByPhoneNum?'密码登录':'手机号登录'}}</div>
 </head-nav>
 <div class="notice" *ngIf="notice">{{notice}}</div>
@@ -37,7 +38,7 @@
   </div>
 </form>
 <div class="line-submit-button input-line ">
-  <input type="button" class="submit-button" value="登录"
+  <input *ngIf="!logining" type="button" class="submit-button" value="登录"
          (click)="loginByPhoneNum?mobileLogin(verifyCode):passwordLogin()" />
 </div>
 <popup *ngIf="captcha&&loginByPhoneNum">

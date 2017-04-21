@@ -2,7 +2,10 @@
   <head-nav *ngIf="!getCity">
     <div class="nav-left"><span class="iconfont">&#xe697;</span><span>返回</span></div>
     <div class="nav-middle" *ngIf="city">{{city.name}}</div>
-    <div class="nav-right" [routerLink]="['/city']">切换城市</div>
+    <div class="nav-right" [routerLink]="['/city']">
+      <span *ngIf="!searching">切换城市</span>
+      <span *ngIf="searching" class="iconfont loading-tip">&#xe609;</span>
+    </div>
   </head-nav>
   <search-city [search]="search" [goTo]="toHomePage" [searchResult]="searchResult"></search-city>
 </div>

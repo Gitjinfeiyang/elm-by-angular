@@ -23,7 +23,6 @@ export class LoginComponent implements OnInit {
   notice:String;//登陆提示信息
   hasSend=false;//是否成功发送
   resend=false;//是否允许重新发送
-  sendResponse:any;
   verifyBtnContent='发送验证码';//发送按钮内容
   resendInterval;//发送短信倒计时
   verifyCode;//短信验证码
@@ -33,6 +32,7 @@ export class LoginComponent implements OnInit {
   username;
   password;
   loginFail=false;//第一次登录失败
+  logining=false;
 
   ngOnInit() {
   }
@@ -67,22 +67,28 @@ export class LoginComponent implements OnInit {
   }
 
   mobileLogin(code:Number){
+    this.logining=true;
     this.userService.mobileLogin(code)
       .then(response => {
+        this.logining=false;
         window.history.back();
       })
       .catch(err => {
-
+        this.logining=false;
       })
   }
 
   passwordLogin(){
+    this.logining=true;
     this.userService.passwordLogin(this.username,this.password,this.captchaCode||'')
       .then(response => {
         window.history.back();
+        this.logining=false;
       })
       .catch(err => {
+        console.log(err)
         this.captchaInput(err);
+        this.logining=false;
       })
   }
 

@@ -7,6 +7,7 @@ import {RatingComponent} from "./components/rating.component/rating.component";
 import {ScrollLoadDirective} from "./scrollLoad.directive";
 import {SearchCityComponent} from "./components/search-city.component/search-city.component";
 import {FormsModule} from "@angular/forms";
+import {AddAnimationDirective} from "./addAnimation.directive";
 
 
 @NgModule({
@@ -20,7 +21,9 @@ import {FormsModule} from "@angular/forms";
     LoadingComponent,
     RatingComponent,
     ScrollLoadDirective,
-    SearchCityComponent
+    SearchCityComponent,
+    AddAnimationDirective
+
   ],
   declarations:[
     HeadComponent,
@@ -28,7 +31,9 @@ import {FormsModule} from "@angular/forms";
     LoadingComponent,
     RatingComponent,
     ScrollLoadDirective,
-    SearchCityComponent
+    SearchCityComponent,
+    AddAnimationDirective
+
   ]
 })
 export class PublicModule{

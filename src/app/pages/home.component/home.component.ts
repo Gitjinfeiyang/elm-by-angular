@@ -29,6 +29,7 @@ export class HomeComponent implements OnInit,AfterViewChecked {
   screenH = window.innerHeight;
   pageH = 0;
   offset=0;
+  keyword;
 
   @HostBinding('@routeAnimation') routeAnimation = true;
   @HostBinding('style.display') display = 'block';
@@ -60,6 +61,12 @@ export class HomeComponent implements OnInit,AfterViewChecked {
         this.goShopping();
       });
     console.log('home onInit')
+  }
+
+  goTo(){
+    this.router.navigate(['search'],{relativeTo:this.route.parent,queryParams:{
+      keyword:this.keyword
+    }})
   }
 
   goShopping() {

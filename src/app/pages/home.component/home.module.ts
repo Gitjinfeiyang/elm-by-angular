@@ -23,6 +23,8 @@ import { OrderComponent } from './order.component/order.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import {CanDeactivateGuard} from "./checkout/canDeactivateGuard";
 import {LocationComponent} from "../location.component/location.component";
+import {AddAnimationDirective} from "../../addAnimation.directive";
+import {UserComponent} from "./me.component/user.component/user.component";
 
 @NgModule({
   imports:[
@@ -51,7 +53,13 @@ import {LocationComponent} from "../location.component/location.component";
           },
           {
             path:'me',
-            component:MeComponent
+            component:MeComponent,
+            children:[
+              {
+                path:'user',
+                component:UserComponent
+              }
+            ]
           },
           {
             path:'search',
@@ -95,6 +103,7 @@ import {LocationComponent} from "../location.component/location.component";
     SearchComponent,
     OrderComponent,
     CheckoutComponent,
+    UserComponent
   ],
   exports:[
   ],

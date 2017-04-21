@@ -10,6 +10,10 @@ import 'rxjs/add/operator/toPromise';
 export class CityService {
   constructor(private http:Http){}
 
+  getWeather(){
+    return this.http.get(`/api/bgs/weather/current?latitude=31.86142&longitude=117.25683`)
+  }
+
   getLocation(position):Promise<City>{
     return this.http.get(`/api/v1/cities?type=search&latitude=${position.latitude}&longitude=${position.longitude}`)
       .toPromise()

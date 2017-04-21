@@ -48,7 +48,7 @@
                     <div class="price" *ngIf="items.specfoods.length==1">{{items.specfoods[0].price}}元</div>
                     <div class="price" *ngIf="items.specfoods.length>1">{{items.specfoods[0].price}}元起</div>
                     <div class="add-to-cart-wrapper">
-                      <add-to-cart [food]="items"></add-to-cart>
+                      <add-to-cart [food]="items" ></add-to-cart>
                     </div>
                   </div>
                 </div>
@@ -109,7 +109,7 @@
   </div>
   <div class="shopping-cart-wrapper" *ngIf="sellerDetail">
     <div class="shopping-cart">
-      <div class="cart" (click)="cartDetail.show=!cartDetail.show">
+      <div class="cart" (click)="cartDetail.show=!cartDetail.show" #shoppingcartRef>
         <div class="icon iconfont" [style.background]="cost>0?'#3190e8':'#3d3d3f'">&#xe63f;</div>
         <span class="cart-count" *ngIf="count>0">{{count}}</span>
       </div>

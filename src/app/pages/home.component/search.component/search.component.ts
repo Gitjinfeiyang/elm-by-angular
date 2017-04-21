@@ -34,13 +34,12 @@ export class SearchComponent implements OnInit {
       })
       .catch(err => {
         console.log('未选择城市')
-      })
+      });
 
     this.getSearchResult();
   }
 
-  search(b){
-    this.searching=true;
+  search(b,params?){
     if(b){
       this.router.navigate([],{queryParams:{
         keyword:this.keyword
@@ -57,17 +56,21 @@ export class SearchComponent implements OnInit {
     this.route.queryParams
       .subscribe(params => {
         if(params['keyword']){
-          this.shoppingService.getRecommendSeller({search:true,keyword:params['keyword']})
+          this.searching=true;
+          this.shoppingService.getRecommendSeller({
+            search:true,
+            keyword:params['keyword']
+          })
             .then(response => {
               this.restaurants=[];
               response.restaurant_with_foods.forEach((item) => {
                 this.restaurants.push(item.restaurant);
-              })
+              });
               if(this.restaurants.length<=0){
                 this.empty=true;
               }
-            })
-          this.searching=false;
+              this.searching=false;
+            });
         }else{
           this.restaurants=[];
         }

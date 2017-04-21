@@ -7,8 +7,8 @@
 </div>
 <div class="content-wrapper" [ngSwitch]="headTitle">
   <div class="checkout-wrapper" *ngSwitchCase="HEADTITLE.CHECKOUT">
-    <div class="address-wrapper">
-      <div class="no-address" *ngIf="!response?.current_address||response?.current_address==null" (click)="getAddress();goTo(HEADTITLE.CHOOSE_ADDRESS)">
+    <div class="address-wrapper" (click)="getAddress();goTo(HEADTITLE.CHOOSE_ADDRESS);">
+      <div class="no-address" *ngIf="!response?.current_address||response?.current_address==null" >
         <span class="text">请选择一个地址</span>
       </div>
       <div class="address" *ngIf="response?.current_address&&response?.current_address!=null;">
@@ -114,8 +114,8 @@
         <div class="input-area">
           <input type="text" name="name" placeholder="请输入姓名" [(ngModel)]="editAddress.name" required/>
           <div class="sex">
-            <label><input type="radio" name="sex" value="1"/>男士</label>
-            <label><input type="radio" name="sex" value="0" />女士</label>
+            <label><input type="radio" name="sex" value="1" [checked]="editAddress.sex==1"/>男士</label>
+            <label><input type="radio" name="sex" value="0" [checked]="editAddress.sex==0"/>女士</label>
             <!--<span><span class="iconfont">&#xe6ad;</span>先生</span> <span><span class="iconfont">&#xe6ad;</span>女士</span>-->
           </div>
         </div>

@@ -1,7 +1,7 @@
 <div class="header-top">
   <marquee class="location-wrapper" *ngIf="location" [routerLink]="['/city']">{{location.address}} ></marquee>
   <div class="shopping-search">
-    <input type="text" placeholder="搜索商家、商品" />
+    <input type="text" placeholder="搜索商家、商品" [(ngModel)]="keyword" (keyup.enter)="goTo()"  />
   </div>
 </div>
 <div class="category-wrapper" *ngIf="category">
@@ -13,7 +13,7 @@
   </ul>
 </div>
 <div class="recommend-sellers" *ngIf="recommendSellers">
-  <h5>推荐商家</h5>
+  <h5 class="title">推荐商家</h5>
   <shopping-list [sellers]="recommendSellers" [test]="test"></shopping-list>
 </div>
 <loading *ngIf="!recommendSellers" [@fadeOut] [complete]="recommendSellers?true:false"></loading>

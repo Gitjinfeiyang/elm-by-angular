@@ -1,5 +1,8 @@
-.nav-middle{text-align: center;}
+.head-wrapper{position:fixed; top:0; left:0; z-index: 10; width:100%;}
+.outlet-wrapper{position:fixed; top:0; left:0;padding-top: 50px;}
 
+.nav-middle{text-align: center;}
+.user-content{padding-top: 50px;}
 .user-profile-wrapper{background:#3190e8; display: flex; color:#fff; }
 .avatar{flex:0 80px; height:80px; line-height: 80px; text-align: center;}
 .avatar .iconfont{font-size: 60px;}

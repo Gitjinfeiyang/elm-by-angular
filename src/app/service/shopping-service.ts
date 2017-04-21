@@ -99,11 +99,11 @@ export class ShoppingService {
     return this.http.post(`/api/v1/carts/checkout`, {
       "come_from": "web",
       "geohash": options.geohash,
-      "address_id": options.address_id || null,
-      "deliver_time": options.deliver_time || null,
+      // "address_id": options.address_id || null,
+      // "deliver_time": options.deliver_time || null,
       "entities": entities,
-      "invoice": options.invoice || null,
-      "paymethod_id": options.paymethod || null
+      // "invoice": options.invoice || null,
+      "paymethod_id": options.paymethod || 1
     })
       .toPromise()
       .then(response => {

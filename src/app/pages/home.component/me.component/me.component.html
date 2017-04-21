@@ -1,42 +1,46 @@
-<head-nav>
-  <div class="nav-left"><span class="iconfont">&#xe697;</span>返回</div>
-  <div class="nav-middle">我的</div>
-  <div class="nav-right"></div>
-</head-nav>
-<div class="user-profile-wrapper">
-  <div class="avatar">
-    <img [src]="userAvatar" *ngIf="userAvatar"/>
-    <span *ngIf="!userAvatar" class="iconfont">&#xe6b8;</span>
-  </div>
-  <div class="user-profile">
-    <div class="toLogin" *ngIf="!userProfile" [routerLink]="['/login']"><span>登录</span> | <span>注册</span></div>
-    <div class="profile" *ngIf="userProfile">
-      <p>{{userProfile.username}}</p>
-      <p *ngIf="userProfile.is_mobile_valid"><span class="iconfont">&#xe6a9;</span> {{userProfile.mobile}}</p>
+<div class="head-wrapper">
+  <head-nav>
+    <div class="nav-left"><span class="iconfont">&#xe697;</span>返回</div>
+    <div class="nav-middle">我的</div>
+    <div class="nav-right"></div>
+  </head-nav>
+</div>
+<div class="outlet-wrapper"><router-outlet></router-outlet></div>
+<div class="user-content">
+  <div class="user-profile-wrapper">
+    <div class="avatar" (click)="goUser()">
+      <img [src]="userAvatar" *ngIf="userAvatar"/>
+      <span *ngIf="!userAvatar" class="iconfont">&#xe6b8;</span>
+    </div>
+    <div class="user-profile">
+      <div class="toLogin" *ngIf="!userProfile" [routerLink]="['/login']"><span>登录</span> | <span>注册</span></div>
+      <div class="profile" *ngIf="userProfile">
+        <p>{{userProfile.username}}</p>
+        <p *ngIf="userProfile.is_mobile_valid"><span class="iconfont">&#xe6a9;</span> {{userProfile.mobile}}</p>
+      </div>
     </div>
   </div>
+  <div class="user-property" *ngIf="userProfile">
+    <div class="balance">
+      <p><strong>{{userProfile.balance}}</strong> 元</p>
+      <p>余额</p>
+    </div>
+    <div class="discount">
+      <p><strong>{{userProfile.gift_amount||0}}</strong> 个</p>
+      <p>优惠</p>
+    </div>
+    <div class="credits">
+      <p><strong>{{userProfile.point}}</strong> 分</p>
+      <p>积分</p>
+    </div>
+  </div>
+  <ul class="other-information">
+    <li class="item"><span class="iconfont" style="color:#3190e8;">&#xe655;</span>我的订单</li>
+    <li class="item"><span class="iconfont" style="color:rgb(255, 95, 62);">&#xe676;</span>积分商城</li>
+    <li class="item"><span class="iconfont" style="color:rgb(106, 194, 11);">&#xe6b8;</span>饿了么会员</li>
+  </ul>
+  <ul class="other-information">
+    <li class="item"><span class="iconfont" style="color:rgb(255, 95, 62);">&#xe6a3;</span>服务中心</li>
+    <li class="item"><span class="iconfont" style="color:rgb(106, 194, 11);">&#xe714;</span>下载饿了么</li>
+  </ul>
 </div>
-<div class="user-property" *ngIf="userProfile">
-  <div class="balance">
-    <p><strong>{{userProfile.balance}}</strong> 元</p>
-    <p>余额</p>
-  </div>
-  <div class="discount">
-    <p><strong>{{userProfile.git_amount||0}}</strong> 个</p>
-    <p>优惠</p>
-  </div>
-  <div class="credits">
-    <p><strong>{{userProfile.point}}</strong> 分</p>
-    <p>积分</p>
-  </div>
-</div>
-<ul class="other-information">
-  <li class="item"><span class="iconfont" style="color:#3190e8;">&#xe655;</span>我的订单</li>
-  <li class="item"><span class="iconfont" style="color:rgb(255, 95, 62);">&#xe676;</span>积分商城</li>
-  <li class="item"><span class="iconfont" style="color:rgb(106, 194, 11);">&#xe6b8;</span>饿了么会员</li>
-</ul>
-<ul class="other-information">
-  <li class="item"><span class="iconfont" style="color:rgb(255, 95, 62);">&#xe6a3;</span>服务中心</li>
-  <li class="item"><span class="iconfont" style="color:rgb(106, 194, 11);">&#xe714;</span>下载饿了么</li>
-  <li class="item" (click)="checkOut()">test checkout</li>
-</ul>

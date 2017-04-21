@@ -14,9 +14,15 @@ export class AddToCartComponent{
     index;//记录在shoppingcart中的位置
   showPanel=false;
   tempFood=[];
+  itemChoose;
 
-  choose(item){
-
+  chooseItem(item){
+    if(this.itemChoose==item){
+      this.itemChoose={};
+    }else{
+      this.itemChoose=item;
+    }
+    console.log(this.itemChoose==item);
   }
 
   show(){

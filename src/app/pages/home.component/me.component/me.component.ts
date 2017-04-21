@@ -2,6 +2,7 @@ import {Component, OnInit, HostBinding} from "@angular/core";
 import {UserService} from "../../../service/user-service";
 import {routerAnimation} from "../../../animations";
 import {ShoppingService} from "../../../service/shopping-service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 
 @Component({
@@ -16,7 +17,9 @@ export class MeComponent implements OnInit{
 
   constructor(
     private userService:UserService,
-    private shoppingService:ShoppingService
+    private shoppingService:ShoppingService,
+    private route:ActivatedRoute,
+    private router:Router
   ){}
   isLogined=false;
   userProfile:any;
@@ -28,7 +31,11 @@ export class MeComponent implements OnInit{
         this.userProfile=this.userService.userProfile=response;
       })
       .catch(err => {
-        console.log(JSON.parse(err.message));
+        console.log(err);
       })
+  }
+
+  goUser(){
+    this.router.navigate(['user'],{relativeTo:this.route})
   }
 }

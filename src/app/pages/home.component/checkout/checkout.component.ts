@@ -28,12 +28,12 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   };
   htSort = []
   hideNav = true;
-  headTitle;
-  response;
-  aAddress = [];
-  dAddress = [];
-  editAddress: any = {};
-  searchAddressResult;
+  headTitle;//head标题
+  response;//checkout结果
+  aAddress = [];//可用地址
+  dAddress = [];//不可用地址
+  editAddress: any = {};//正在编辑的地址
+  searchAddressResult;//搜索地址
 
   ngOnInit() {
     console.log('checkout init')
@@ -59,7 +59,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   checkout(address) {
     this.shoppingService.checkout({
       geohash: address.geohash,
-      address_id: address.id,
+      // address_id: address.id,
     })
       .then(response => {
         this.response = response;

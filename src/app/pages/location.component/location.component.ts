@@ -27,6 +27,7 @@ export class LocationComponent implements OnInit{
 
   city:City;
   searchResult:any;
+  searching=false;
 
   ngOnInit(){
     if(this.route.snapshot.params['id']){
@@ -38,8 +39,12 @@ export class LocationComponent implements OnInit{
   }
 
   search=(keyword) => {
+    this.searching=true;
       this.cityService.getSearchResult(this.city.id,keyword)
-        .then(result => this.searchResult=result);
+        .then(result => {
+          this.searchResult=result;
+          this.searching=false;
+        });
   }
 
   toHomePage=(location:any) => {

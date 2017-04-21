@@ -1,3 +1,4 @@
+.list-wrapper{background:#fff;}
 .seller-box{display: flex; padding:10px; border-bottom: 1px solid #e4e4e4;}
 .seller-img-wrapper{flex:0 80px; height:80px; position:relative; overflow: hidden;}
 .new-seller-icon{width:70px; position:absolute; left:-26px; top:-10px; transform: rotateZ(-45deg); background:#4cd964;

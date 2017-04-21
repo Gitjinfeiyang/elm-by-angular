@@ -1,8 +1,8 @@
 a{color:#3190e8; font-weight: 300;}
 
-
+.notice{color:#ff6f4f; background: rgba(255,133,143,0.35); padding:10px;}
 .login-by-phoneNum,.login-by-username,.line-submit-button,.agreement-wrapper,.find-password-wrapper{padding:10px; line-height: 40px;}
-.login-by-phoneNum input, .login-by-username input, .submit-button{line-height: 40px; height:40px;border-radius: 2px; background:#e4e4e4;}
+.login-by-phoneNum input, .login-by-username input, .submit-button{line-height: 40px; height:40px;border-radius: 2px; background:#f5f5f5;}
 .login-by-phoneNum input, .login-by-username input{text-indent: 10px;}
 .verify-code-input,.verify-code-send-input{width:49%;}
 .verify-code-send-input{background:#4cd964 !important; color:#fff;}

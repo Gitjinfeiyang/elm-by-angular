@@ -33,6 +33,9 @@ export class OrderComponent implements OnInit {
             this.logined=false;
           })
       })
+      .catch(err => {
+        this.logined=false;
+      })
 
   }
 
