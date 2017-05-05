@@ -1,4 +1,4 @@
-#tip
+# tip
   由于一些验证的原因，我将localhost改为了h5.ele.me以支持登录功能
   host文件
   localhost   xxx.xxx.xxx.xxx
